@@ -1,0 +1,15 @@
+@media (max-width:575.98px) {
+    .toast-notify{
+        width: 90vw;
+    }
+    .toast-icon span{
+        height: 20px;
+        width: 20px;
+    }
+    .toast-title{
+        font-size: 14px;
+    }
+    .toast-content{
+        font-size: 12px;
+    }
+}

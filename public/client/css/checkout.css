@@ -1,0 +1,305 @@
+#content {
+    display: flex;
+}
+
+#left {
+    flex-basis: 55%;
+    max-width: 55vw;
+    padding-top: 150px;
+    padding-left: 200px;
+    padding-right: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#l-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    color: #333333;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.input-contact input {
+    border: 1px solid #D9D9D9;
+    padding: 15px;
+    border-radius: 5px;
+    outline-color: #66AFE9;
+    font-size: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.input-contact {
+    margin-bottom: 15px;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    min-height: 50px;
+
+}
+
+label.lb-ic {
+    font-size: 15px;
+    color: #969292;
+    position: absolute;
+    top: 25%;
+    left: 10px;
+    transition: all ease-in-out 0.3s;
+    z-index: 0;
+}
+
+.placeholder {
+    top: 2px !important;
+    font-size: 12px !important;
+}
+
+#select-address {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+#select-address div{
+    flex-basis: 32%;
+}
+#select-address select {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    outline-color: #66AFE9;
+}
+
+textarea {
+    width: 100%;
+    padding-left: 10px;
+    border: none;
+    outline-style: none;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+
+span.lb-bot {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #4c4c4c;
+}
+
+.bot-item {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #E7E6E6;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.bot-item input {
+    display: none;
+}
+
+.bot-item input+label {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    /* Khoảng cách từ nút radio đến văn bản */
+    cursor: pointer;
+}
+
+.bot-item input+label:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    width: 16px;
+    /* Chiều rộng nút radio */
+    height: 16px;
+    /* Chiều cao nút radio */
+    border: 2px solid #ccc;
+    /* Viền nút radio */
+    border-radius: 50%;
+    /* Hình dạng nút radio thành hình tròn */
+}
+
+.bot-item input+label:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    width: 6px;
+    /* Chiều rộng nút radio */
+    height: 6px;
+    /* Chiều cao nút radio */
+    border: 2px solid #ccc;
+    /* Viền nút radio */
+    border-radius: 50%;
+    /* Hình dạng nút radio thành hình tròn */
+}
+
+
+.bot-item input:checked+label:after {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+/* Tạo kiểu hiển thị khi nút radio được chọn */
+.bot-item input:checked+label:before {
+    background-color: #2196f3;
+    border-color: #2196f3;
+    top: 3px;
+
+}
+
+/* Tạo kiểu hiển thị khi nút radio được chọn và được hover */
+.bot-item input:checked+label:hover:before {
+    background-color: #1976d2;
+    /* Màu nền khi nút radio được chọn và hover */
+    border-color: #1976d2;
+    /* Màu viền khi nút radio được chọn và hover */
+}
+
+#order {
+    margin-top: 15px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#order a {
+    color: #1976d2;
+    font-weight: 600;
+    height: 45px;
+}
+
+#order button {
+    border: none;
+    background-color: rgb(40, 139, 220);
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 10px 80px;
+    border-radius: 5px;
+}
+
+#order button:hover {
+    background-color: #1976d2;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ------------------right--------------------- */
+ul {
+    list-style: none;
+}
+
+#right {
+    flex-basis: 45%;
+    max-width: 45vw;
+    background-color: #FAFAFA;
+    padding-top: 50px;
+    border-left: 1px solid #E7E6E6;
+    box-shadow: 1px 0 0 #e1e1e1 inset;
+    padding-right: 200px;
+}
+
+#right h3 {
+    padding-left: 40px;
+    border-bottom: 1px solid #E7E6E6;
+    padding-bottom: 15px;
+}
+
+#right #list-product li {
+    display: flex;
+    height: 60px;
+    width: 500px;
+    margin-bottom: 15px;
+}
+
+#right #list-product li .p-img {
+    height: 100%;
+    flex-basis: 60px;
+    border: 1px solid #E7E6E6;
+    border-radius: 10px;
+    position: relative;
+    margin-right: 10px;
+}
+
+#right #list-product li .p-img img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+#right #list-product li .p-img span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    height: 19px;
+    width: 19px;
+    background-color: #2B9DCC;
+    color: #FFFFFF;
+    border-radius: 50%;
+}
+
+#right #list-product li span.p-name {
+    flex-basis: 200px;
+    max-width: 200px;
+}
+
+#right #list-product li span.price{
+    margin-left: 20px;
+    color: #717171;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-end;
+}
+#amount{
+    margin-top: 50px;
+    border-top: 1px solid #E7E6E6;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+#amount .a-item{
+    display: flex;
+    justify-content: space-between;
+}
+.a-item span{
+    color: #717171;
+    font-size: 14px;
+    font-weight: 500;
+}
+.a-item span.a-title{
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+#total{
+    color: #717171;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E7E6E6;
+    margin-top: 50px;
+    padding-top:20px;
+}
+span.t-title{
+    text-transform: uppercase;
+}
+#content{
+    min-height: 100vh;
+}

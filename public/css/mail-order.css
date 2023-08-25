@@ -1,0 +1,107 @@
+#wrapper{
+    width: 780px;
+    margin: 0px auto;
+}
+#header #logo{
+    height: 70px;
+    width: 100%;
+}
+#header #logo img{
+    height: 70px;
+    width: auto;;
+}
+#header #title{
+    background-color: #1594E6;
+    padding: 15px 20px;
+    /* margin-bottom: 20px; */
+
+}
+#header #title h2{
+    color: #FFFFFF;
+    margin: 0px;
+    font-weight: 500;
+}
+#header #title h2 a{
+    color: #FFFFFF;
+}
+#header #title h2 a:hover{
+    color: #000000;
+}
+#content{
+    background-color: #F2F2F2;
+    padding: 30px;
+}
+.note {
+    color: #EA2027;
+    font-weight: 600;
+}
+.orderer{
+    margin: 20px 0px;
+}
+span{
+    color: #363638;
+    font-weight: 500;
+    font-size: 17px;
+}
+.content-item{
+    margin-bottom: 15px;
+}
+#content-2 table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+}
+#content-2 table thead tr {
+    background-color: #1594E6;
+    color: #FFFFFF;
+}
+td{
+    padding: 20px 10px;
+    margin: 0px;
+    border: 1px solid #747373;
+    font-size: 17px;
+    font-weight: 500;
+}
+#content-2 table tbody tr{
+   color: #4c4c4c;
+}
+#content-2 table tbody tr span{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+#content-2 table tbody tr td{
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+}
+#content-2 table tbody tr a{
+    text-decoration: none;
+    color: #044c7b;
+
+    max-width: 150px;
+}
+tfoot tr{
+    background-color: #FFFFFF;
+}
+#content-4{
+    background-color: #FFFFFF;
+    padding: 20px;
+    border: 1px solid #e6e0e0;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border-radius: 20px;
+}
+#footer{
+    background-color: #F2F2F2;
+    padding: 15px 30px;
+}
+#content-6{
+    background-color: #FFFFFF;
+    padding: 20px;
+    border: 1px solid #e6e0e0;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border-radius: 20px;
+}

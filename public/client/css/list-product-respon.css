@@ -1,0 +1,32 @@
+@media(max-width:991.98px) {
+    #content{
+        margin-top: 0px !important;
+    }
+    #breadcrumb-nav .breadcrumb {
+        margin-top: 70px;
+    }
+    #filter{
+        display: none;
+    }
+}
+@media(max-width:575.98px){
+  #content{
+    width: 100vw !important;
+  }
+  #arrange{
+      padding: 0px 10px;
+  }
+  ul.list-product.p-list {
+      justify-content:space-around !important;
+  }
+   ul.list-product.p-list {
+       height: auto;
+   }
+   div.center.paginate{
+       display:none;
+   }
+   .filter-item{
+       font-size:12px;
+       padding: 2px 3px;
+   }
+}

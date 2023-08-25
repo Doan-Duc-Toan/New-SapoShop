@@ -1,0 +1,128 @@
+
+.title-business{
+    padding: 15px 10px;
+    border: 0.5px solid #E3E4E6;
+    background-color: #FFFFFF;
+}
+#business #day-business a.report-day {
+     padding-top: 10px;
+     min-height: 100px;
+     max-height: 180px;
+     display: flex; 
+     border: 0.5px solid #E3E4E6;
+     border-left: none;
+     border-top: none;
+     padding-left: 10px;
+     background-color: #FFFFFF;
+     box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+     box-sizing: border-box;
+}
+#business #day-business{
+    align-self: flex-start;
+}
+#business #day-business a.report-day:hover{
+    background-color: #F2F9FF;
+}
+#business #day-business a.report-day.head{
+    border-left: 0.5px solid #E3E4E6;
+}
+#business #day-business a.report-day img{
+    height: 75px;
+    width: 75px;
+}
+#business #day-business a.report-day .rp-name{
+    flex-basis: 70%;
+    padding-top: 10px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+#business #day-business a.report-day .rp-name span.name-report{
+    font-weight: 600;
+    font-size: 17px;
+    color: #000000;
+}
+#business #day-business a.report-day .rp-name span.count{
+    font-size: 21px;
+}
+
+#revenue-char{
+    margin-top: 40px;
+    background-color: #FFFFFF;
+}
+#revenue-char h6{
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 0.5px solid  #E3E4E6;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+}
+.popular{
+    background-color: #FFFFFF;
+    margin-top: 30px;
+}
+.popular .pp-head{
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #E3E4E6;
+    padding: 10px 5px;
+}
+.popular .pp-data{
+    text-align: center;
+}
+.popular .pp-data img{
+    display: inline;
+    width: 60%;
+    height: auto;
+}
+
+div#diary-activity{
+    box-sizing: border-box;
+    padding: 0px 10px;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    max-height: 100vh;
+    overflow: scroll;
+}
+div#diary-activity div.diary-item{
+    min-height: 50px;
+    max-height: 100px;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    display: flex;
+}
+div#diary-activity div.diary-item .img-diary{
+    flex-basis:20%;
+    
+}
+div#diary-activity div.diary-item .img-diary img{
+    width: 70px;
+    height: 70px;
+   
+}
+div#diary-activity div.diary-item .diary-detail{
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+div#diary-activity div.diary-item .diary-detail .name{
+    font-weight: 650;
+}
+div#diary-activity div.diary-item .diary-detail .diary-content{
+     height: 20px;
+     width: 150px;
+     text-overflow:ellipsis;
+     overflow:hidden;
+     white-space: nowrap;
+}
+div#diary-activity div.diary-item.see-more a{
+    text-align: right;
+    flex-basis: 100%;
+}
+div#diary-activity div.diary-item.see-more a:hover{
+    text-decoration: underline;
+}
+#message.modal{
+    --bs-modal-width: 600px !important;
+}

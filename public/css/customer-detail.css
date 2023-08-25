@@ -1,0 +1,47 @@
+.bg-F{
+    background-color: #FFFFFF;
+}
+.user-desc{
+    margin-bottom: 30px;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border: 1px solid rgb(168 168 168 / 25%);
+    padding: 15px;
+}
+.user-desc .img-user{
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-desc .img-user img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.user-desc .user-name{
+    padding-top: 10px;
+}
+.user-desc .note{
+    margin-top: 50px;
+}
+.recent-order{
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border: 1px solid rgb(168 168 168 / 25%);
+    padding: 15px;
+}
+.recent-order .table-responsive{
+    margin-top: 20px;
+}
+.contact{
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border: 1px solid rgb(168 168 168 / 25%);
+    padding: 15px;
+    margin-left: 30px;
+}
+.contact span{
+    font-weight: 400!important;
+    font-size: 15px;
+}
+.complete{
+    margin-top: 50px;
+}

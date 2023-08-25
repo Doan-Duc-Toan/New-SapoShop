@@ -1,0 +1,133 @@
+form{
+    padding: 0px !important;
+}
+.content-detail .description-detail{
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.img-product{
+    padding: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.img-product span{
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.img-product button{
+    margin-bottom: 15px;
+}
+.img-product .list-img-product .col-md-4{
+    
+    position: relative;
+    border: 1px solid rgb(168 168 168 / 25%);
+
+}
+.img-product .list-img-product .col-md-4 .img-thumb{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 120px;
+}
+.img-product .list-img-product img{
+    width: auto;
+    height: 100%;
+}
+ a.xthumb{
+    content: "X";
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(168 168 168 / 25%);
+    border-radius: 50%;
+    display: none;
+}
+.img-product .list-img-product .col-md-4:hover{
+    opacity: 0.7;
+}
+.img-product .list-img-product .col-md-4:hover a.xthumb{
+    display: flex;
+}
+.img-product .list-img-product .col-md-4 a.xthumb:hover{
+    background-color: rgba(95, 94, 94, 0.25);
+    color: #ec6262;
+}
+.version{
+    background-color: #FFFFFF;
+    margin-top: 30px;
+    border: 1px solid rgb(168 168 168 / 25%);
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    padding: 15px;
+}
+.version .col-md-6{
+    margin-top: 10px;
+
+}
+.version .btn-update-version-now{
+    padding: 15px;
+}
+.version .table-version{
+  /* padding: 0px; */
+  margin-top: 20px;
+  /* display: none; */
+}
+.version .table-version table input{
+    width: 70%;
+}
+
+.version .table-version table tr td.handle button{
+    border: none;
+    background-color: #F8F8FA;
+    border: 1px solid rgb(168 168 168 / 25%);
+    width: 100%;
+    height: 50%;
+    display: block;
+}
+.version .table-version table tr td.handle button:hover{
+    background-color: #ec6262;
+    color: #FFFFFF;
+}
+.version .table-version table tr td.handle a{
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(168 168 168 / 25%);
+    background-color: #F8F8FA;
+    border-top: none;
+    height: 50%;
+    padding: 3px 0px;
+    
+}
+.version .table-version table tr td.handle a:hover{
+    background-color: rgba(84, 81, 81, 0.25);
+
+}
+.classify{
+    margin-left: 30px;
+    background-color: #FFFFFF;
+    padding: 15px;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+    border: 1px solid rgb(168 168 168 / 25%);
+    min-height: 70vh;
+}
+
+.complete{
+    border-top: 2px solid rgb(168 168 168 / 25%);
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0px;
+}

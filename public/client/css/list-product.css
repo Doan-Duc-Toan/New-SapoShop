@@ -1,0 +1,323 @@
+
+/* ------------------filter------------------ */
+#content {
+    width: 1280px;
+    margin: 0px auto;
+    display: flex;
+    background-color: #FFFFFF;
+    padding: 30px 15px;
+}
+
+#content #filter {
+    flex-basis: 300px;
+    max-width: 300px;
+}
+
+.list-filter {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+.list-filter span {
+    color: #d70018;
+    font-weight: 650;
+    font-size: 17px;
+}
+
+.list-filter li.list-filter-item {
+    margin-bottom: 25px;
+}
+
+.list-filter li.list-filter-item form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-filter li.list-filter-item form span {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+}
+
+.list-filter li.list-filter-item.fr-price input {
+    width: 40%;
+    margin-right: 20px;
+    border: 1px solid #CED4DA !important;
+    padding: 7px 10px;
+    border-radius: 5px;
+    outline-color: #80BDFF;
+}
+
+.list-filter li.list-filter-item.fr-price button {
+    border: none;
+    background-color: #d70018;
+    padding: 5px 12px;
+    margin-top: 10px;
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.list-filter li.list-filter-item.fr-price button:hover {
+    background-color: #eb1c34;
+}
+
+.list-filter li.list-filter-item div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    padding: 6px 10px;
+    background-color: #FBFBFB;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #CED4DA;
+    color: #4c4c4c;
+    font-weight: 500;
+    transition: all ease-in-out 0.3s;
+}
+
+.filter-item:hover {
+    color: #d70018;
+    border: 1px solid #d70018;
+}
+
+/* -----------------slide------------- */
+
+
+#arrange {
+    flex-basis: 950px;
+    max-width: 950px;
+    display: flex;
+    min-height: 65px;
+    padding-bottom: 15px;
+    flex-wrap: wrap;
+    align-self: flex-start;
+}
+
+#list-product-main {
+    /*border-top: 1px solid #CED4DA;*/
+    margin-top: 20px;
+    flex-basis: 100%;
+}
+
+#arrange span.center {
+    color: #4c4c4c;
+    font-size: 17px;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+ul.list-product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 20px;
+    height: 720px;
+    overflow: hidden;
+}
+
+ul.list-product li {
+    flex-basis: 230px;
+    height: 350px;
+    background-color: #FFFFFF;
+    padding: 10px;
+    max-width: 230px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    border: 1px solid #DEE2E6;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgb(168 168 168 / 25%);
+    position: relative;
+    margin-right:7px;
+}
+
+ul.list-product li a.detail {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+ul.list-product li a .product-thumb {
+    height: 250px;
+    flex-basis: 100%;
+    overflow: hidden;
+}
+
+ul.list-product li a .product-thumb img {
+    width: 90%;
+    height: 90%;
+    transition: all ease-in-out 0.5s;
+}
+
+ul.list-product li a .product-thumb:hover img {
+    transform: scaleX(1.1) scaleY(1.1);
+}
+
+ul.list-product li a span.pr-name {
+    padding-left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #4c4c4c;
+    height: 30px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all linear 0.2s;
+}
+
+ul.list-product li a span.pr-name:hover {
+    color: #d70018;
+
+}
+
+.progress {
+    height: 25px;
+    background-color: #ff9a9a;
+    border-radius: 20px;
+}
+
+.progress span {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+ul.list-product li .price {
+    height: 30px;
+    padding-left: 20px;
+}
+
+ul.list-product li .price .new-p {
+    color: #d70018;
+    font-weight: 700;
+}
+
+ul.list-product li .price .old-p {
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+ul.list-product li .pt-icon {
+    height: 45px;
+    width: 45px;
+    background-color: #F1243B;
+    border-radius: 50%;
+    position: absolute;
+    color: #FFFFFF;
+}
+
+ul.list-product li .pt-icon i {
+    font-size: 20px;
+}
+
+ul.list-product li .pt-icon.setting {
+    left: -30px;
+    top: 210px;
+    opacity: 0;
+    transition: all ease-in-out 0.3s;
+}
+
+ul.list-product li .pt-icon.basket {
+    right: -30px;
+    top: 210px;
+    transition: all ease-in-out 0.3s;
+    opacity: 0;
+}
+
+ul.list-product li:hover .pt-icon.setting {
+    left: 10px;
+    opacity: 1;
+}
+
+ul.list-product li:hover .pt-icon.basket {
+    right: 10px;
+    opacity: 1;
+}
+
+.sale-label {
+    color: #FFFFFF;
+    background-color: #d70018;
+    width: 85px;
+    padding: 3px 10px;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    position: absolute;
+    top: 10px;
+    box-shadow: 0px 0px 5px 1px #fff;
+    left: -5px;
+}
+
+.sale-label::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #AD0300;
+    left: 0px;
+    top: 100%;
+}
+
+.paginate {
+    flex-basis: 100%;
+}
+
+.paginate a {
+    flex-basis: 40px;
+    height: 40px;
+    color: #d70018;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #CED4DA;
+    margin: 0px 5px;
+    border-radius: 5px;
+}
+
+.p-active {
+    background-color: #d70018;
+    color: #FFFFFF !important;
+}
+
+.paginate{
+    position: relative;
+    height: 100px;
+}
+.btn-adjust {
+    color: #4c4c4c;
+    position: absolute;
+    border: 1px solid #CED4DA;
+    box-shadow: 0 0px 2px 0 rgba(60, 64, 67, 0.1), 0 0px 6px 0px rgba(60, 64, 67, 0.25);
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 7px 20px;
+    bottom: 10px;
+    border-radius: 5px;
+    right: 45%;
+    transition: all ease-in-out 0.4s;
+    z-index: 2;
+}
+
+.btn-adjust:hover {
+    border: 1px solid #d70018;
+    color: #d70018;
+    box-shadow: 0 0px 2px 0 #ea122c, 0 0px 6px 0px #eb1730;
+}
+.btn-collapse{
+    display: none;
+}

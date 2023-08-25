@@ -1,0 +1,333 @@
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.container{
+    padding: 0px;
+    margin: 0px;
+}
+
+#sidebar{
+    background: #202D3F;
+    height: 100vh;
+    position:fixed;
+    top: 0px;
+    /* left: 0px; */
+    /* bottom: 0px; */
+    padding:0px;
+    padding-top: 10px;
+    z-index: 0;
+    overflow: scroll;
+}
+
+#sidebar ul#navbar a{
+    color: #cad6e2;
+    font-weight: 350;
+}#sidebar ul#navbar li.nav-item ul.sub-menu .row{
+    width: 100%;
+    margin: 0px;
+}
+#sidebar ul#navbar li.nav-item ul.sub-menu .row li.col-md-12{
+   padding-left: 50px;
+   padding-right: 0px;
+   box-sizing: border-box;
+   width: 100%;
+}
+
+.col-md-3{
+    padding: 0px;
+}
+#sidebar ul#navbar li#logo{
+    height: 40px;
+}
+#sidebar ul#navbar li#logo a{
+    padding-left: 15px;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+#sidebar ul#navbar li#logo img{
+    height: 100%;
+    width: auto;
+}
+#sidebar ul#navbar li.nav-item a.item-link{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #202D3F;
+    padding-left: 15px;
+}
+#sidebar ul#navbar li.nav-item a.item-link:hover{
+    background: #314a6c;
+    opacity: 0.9;
+}
+#sidebar ul#navbar li.nav-item a.item-link:hover span{
+    color: #FFFFFF;
+}
+#sidebar ul#navbar li.nav-item a.item-link span{
+    flex-basis: 60%;
+    margin-left: 5px;
+}
+#sidebar ul#navbar li.nav-item a.item-link i{
+    padding-top: 4px;
+}
+#sidebar ul#navbar li.nav-item  i.fa-greater-than{
+    position: absolute;
+    font-size: 10px;
+    color: #cad6e2;
+    top: 8px;
+    right: 30px;
+    padding: 10px;
+   transition: all ease-in-out 0.5s;
+}
+
+#sidebar ul#navbar li.nav-item {
+    position: relative;
+    padding: 0px;
+}
+#sidebar ul#navbar li.nav-item ul.sub-menu{
+    display: none;
+    width: 100%;
+    background-color: #192537;
+    padding: 10px 0px;
+} 
+.bg-hover{
+    background: #314a6c;
+    opacity: 0.9;
+}
+.open{
+    transform: rotate(90deg);
+}
+#sidebar ul#navbar li.nav-item ul.sub-menu li:hover a{
+    color: #FFFFFF;
+}
+
+/* ----------End sidebar------------- */
+.row{
+    padding: 0px;
+    margin:0px;
+}
+.fixed{
+    position: fixed;
+    top: 0px;
+}
+#wrapper.container{
+    margin: 0px ;
+    min-width: 100vw !important;
+}
+
+#wr-content{
+    margin-left: 256px;
+    background-color: #F4F6F8;
+    padding: 0px;
+}
+.search button{
+   padding-top: 4px;
+   border: none;
+   background:none !important;
+   outline-style: none;
+   color: #929BA2;
+}
+#header{
+    /* position: fixed;
+    top: 0px; */
+    background-color: #FFFFFF;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    border-bottom: 0.5px solid #E3E4E6;
+    height: 70px;
+    min-width: 100vw !important;
+    z-index: 100;
+}
+
+.search{
+    height: 35px;
+    border:0.5px solid #E3E4E6; ;
+    padding-left: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.search input{
+    border: none;
+    width: 80%;
+    outline-style: none;
+    font-size: 14px;
+    max-width: 30vw;
+}
+#request{
+    display: flex;
+    padding-left: 45px;
+    font-size: 15px;
+    height: 70px;
+    justify-content: right;
+}
+.option{
+    padding: 20px 10px;
+    color: #787a7d;
+}
+#helper span{
+    position: relative;
+    padding-left: 15px;
+}
+.option .fa-question{
+    position: absolute;
+    left: -5px;top: 2px;
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 50%;
+    color: #E3E4E6;
+    background-color: #787a7d;
+    font-size: 10px;
+} 
+.option:hover{
+    cursor: pointer;
+    background-color: #F2F9FF;
+    color: #0289FD;
+}
+.active{
+    cursor: pointer;
+    background-color: #F2F9FF;
+    color: #0289FD;
+}
+.option:hover .fa-question{
+    background-color: #0289FD;
+}
+#current-user{
+    height: 70px;
+}
+#top-profile{
+   padding-top: 10px;
+   height: 100%;
+   position: relative;
+padding-left: 10px;
+padding-right: 10px;
+}
+#top-profile img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    
+}
+#top-profile .name-user{
+    padding-left: 10px;
+}
+#top-profile .status{
+    position: absolute;
+    right: 80px;
+    bottom: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #0388FD;
+}
+#top-profile:hover{
+    background-color :#F2F9FF;
+    color: #0289FD;
+    cursor: pointer;
+}
+
+.popover{
+   --bs-popover-max-width: 25vw;
+}
+#popover-menu{
+    --bs-gutter-x:0rem;
+}
+#popover-menu a{
+    color: #68687C;
+}
+#popover-menu #list-suggest{
+    width: 100%;
+    padding: 15px;
+}
+#popover-menu #list-suggest li a:hover{
+    color: #0289FD;
+}
+#popover-menu #menu-suggest{
+    margin-top: 20px;
+    width: 100%;
+    --bs-gutter-x: 0rem;
+    border: 0.5px solid #e1dfdf;
+    border-left: none;
+
+}
+#popover-menu #menu-suggest a{
+    text-align: center;
+    border-right: 0.5px solid #e1dfdf;
+}
+#popover-menu #menu-suggest a.last{
+    border: none;
+}
+#popover-menu #menu-suggest a .icon{
+    height: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#popover-menu #menu-suggest a .icon img{
+    height: 100%;
+    width: 70%;
+}
+#contact{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding:15px;
+    background-color: #F3F6F8;
+}
+#contact a{
+    font-size: 18px;
+    color: #0289FD;
+}
+ul#bot-profile{
+    padding: 10px 0px;
+}
+ul#bot-profile li{
+    padding: 10px 15px;
+}
+ul#bot-profile li a{
+    color:#68687C;
+}
+ul#bot-profile li:hover{
+    background-color: #0388FD;
+}
+ul#bot-profile li:hover a{
+    color: #FFFFFF;
+}
+.popover-body{
+    padding: 0px;
+}
+#notify{
+  height: 70px;   
+  text-align: center;
+  padding-top: 15px;
+  font-size: 25px;
+  display:flex;
+  justify-content:left;
+}
+span.empty-notify{
+    padding: 10px;
+    display: block;
+    font-weight: 500;
+}
+
+/* -----------------------end header-------------------- */
+#content{
+    margin-top: 90px;
+    padding:0px 30px;
+    background-color: #F4F6F8;
+    min-height: 100vh;
+}
+.bg-F{
+    background-color: #FFFFFF;
+    padding: 15px; 
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgb(168 168 168 / 25%);
+}
+a.back:hover span{
+    color: #0388FD!important;
+}
