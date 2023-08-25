@@ -122,7 +122,27 @@ a:hover{
     margin: 0px ;
     min-width: 100vw !important;
 }
-
+.search_all{
+    height: 35px;
+    border:0.5px solid #E3E4E6; ;
+    padding-left: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.search_all input{
+    border: none;
+    width: 80%;
+    outline-style: none;
+    font-size: 14px;
+    max-width: 30vw;
+}
+.search_all button{
+    padding-top: 4px;
+    border: none;
+    background:none !important;
+    outline-style: none;
+    color: #929BA2;
+ }
 #wr-content{
     margin-left: 256px;
     background-color: #F4F6F8;

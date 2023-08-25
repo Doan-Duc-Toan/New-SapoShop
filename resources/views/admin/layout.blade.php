@@ -19,19 +19,29 @@
 
 <body>
     <style>
-        #list-feedback .feedback_item{
+        #list-feedback .feedback_item {
             border-bottom: 1px solid #DEE2E6;
             margin-bottom: 10px;
         }
-        .model-content{
+
+        .model-content {
             max-height: 75vh;
             overflow: scroll;
         }
+
         .list-active {
             color: #0388FD !important;
-            font-weight:700;
+            font-weight: 700;
+        }
+        #search_result{
+            max-height: 75vh;
+        }
+        ul.dropdown-menu{
+            max-height: 75vh !important;
+            overflow: scroll;
         }
     </style>
+    
     <div id="wrapper" class="container">
         <div class="row">
             <div class="col-md-2" id="sidebar">
@@ -68,7 +78,8 @@
                                 <div class="row">
                                     <li class="col-md-12"><a href="{{ route('product.show') }}">Danh sách sản phẩm</a>
                                     </li>
-                                    <li class="col-md-12"><a href="{{ route('your_products') }}">Sản phẩm của bạn<nav></nav></a>
+                                    <li class="col-md-12"><a href="{{ route('your_products') }}">Sản phẩm của bạn<nav>
+                                            </nav></a>
                                     </li>
                                     <li class="col-md-12"><a href="{{ route('cat.show') }}">Danh mục sản phẩm</a></li>
                                     <li class="col-md-12"><a href="{{ route('product.add') }}">Thêm sản phẩm</a></li>
@@ -138,11 +149,13 @@
             <div class="col-md-10" id="wr-content">
                 <div id="header" class="container">
                     <div class="row">
-                        <div class="search col-md-4">
+                        <div class="search_all col-md-4">
                             <form action="">
                                 <button> <i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input type="text" placeholder="Nhập từ khóa tìm kiếm">
+                                <input name="search_admin" type="text" placeholder="Nhập từ khóa tìm kiếm">
                             </form>
+                            <div id="search_result" class="col-md-12"><br>
+                            </div>
                         </div>
                         <div class="col-md-3" id="request">
                             <div id="helper" class="option" data-bs-container="body" data-bs-toggle="popover"
@@ -195,7 +208,7 @@
                                 data-bs-placement="bottom" data-bs-html="true"
                                 data-bs-content="
                              <ul id='bot-profile'>
-                                 <li><a href='{{route('current_user')}}'><i class='fa-regular fa-user'></i> Tài khoản của bạn</a></li>
+                                 <li><a href='{{ route('current_user') }}'><i class='fa-regular fa-user'></i> Tài khoản của bạn</a></li>
                                  <li><a href='#'><i class='fa-solid fa-boxes-packing'></i> Gói dịch vụ</a></li>
                                  <li><a href='{{ route('admin.logout') }}'><i class='fa-solid fa-right-from-bracket'></i>Đăng xuất</a></li>
                                  <li><a href='#'>Điều khoản và dịch vụ</a></li>
@@ -233,14 +246,15 @@
                             <ul id="list-feedback">
                                 @foreach ($feedbacks as $feedback)
                                     <li class="feedback_item">
-                                         <div class="top-fbitem">
-                                            <a href="{{route('customer.profile',$feedback->customer->id)}}">#{{$feedback->customer->id}}-{{$feedback->customer->fullname}}</a>
-                                         </div>
-                                         <div class="content-fbitem">
-                                             <span><b>Mục góp ý: </b>{{$feedback->section}}</span><br>
-                                             <span><b>Tiêu đề: </b>{{$feedback->title}}</span><br>
-                                             <span><b>Nội dung: </b>{{$feedback->content}}</span>
-                                         </div>
+                                        <div class="top-fbitem">
+                                            <a
+                                                href="{{ route('customer.profile', $feedback->customer->id) }}">#{{ $feedback->customer->id }}-{{ $feedback->customer->fullname }}</a>
+                                        </div>
+                                        <div class="content-fbitem">
+                                            <span><b>Mục góp ý: </b>{{ $feedback->section }}</span><br>
+                                            <span><b>Tiêu đề: </b>{{ $feedback->title }}</span><br>
+                                            <span><b>Nội dung: </b>{{ $feedback->content }}</span>
+                                        </div>
                                     </li>
                                 @endforeach
                             </ul>
@@ -278,6 +292,29 @@
                         }
                     })
                 })
+            })
+        </script>
+        <script>
+            $(".search_all input").keyup(function() {
+                var query = $(this).val();
+                if (query != null) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('search_admin_ajax') }}",
+                        data: {
+                            query: query,
+                        },
+                        success: function(data) {
+                            $('#search_result').fadeIn();
+                            $('#search_result').html(data);
+                        },
+                        // error: function(xhr) {
+                        //     console.log(xhr.responseText);
+                        // }
+                    });
+                } else {
+                    $('#search_result').fadeOut();
+                }
             })
         </script>
 </body>

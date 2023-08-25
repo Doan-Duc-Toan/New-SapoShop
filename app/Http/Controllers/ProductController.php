@@ -217,7 +217,6 @@ class ProductController extends Controller
     function search_ajax(Request $request)
     {
         if ($request->input('query')) {
-
             $query = $request->input('query');
             $data = Product::where('name', 'LIKE', "%{$query}%")->get();
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';

@@ -9,7 +9,8 @@ use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Product_Color;
 use App\Models\NotifiCation;
-
+use App\Models\Product;
+use App\Models\User;
 class DashboardController extends Controller
 {
     //
@@ -61,5 +62,44 @@ class DashboardController extends Controller
         $trending_product = Product_Color::orderBy('sold', 'desc')->take(5)->get();
         $messages = Notification::orderBy('created_at', 'desc')->get();
         return view('admin.dashboard.index', compact('amounts', 'total', 'customer', 'orders_of_day', 'trending_product', 'messages'));
+    }
+    function search_admin_ajax(Request $request)
+    {
+        if ($request->input('query')) {
+
+            $query = $request->input('query');
+            $data1 = Order::find($query);
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative"><li class ="px-3">' . "Đơn hàng"  . '</li>';
+            if (!empty($data1->id))
+                $output .= '
+               <li class ="px-3"><a href="' . route('order.detail', $data1->id) . '">' . "Đơn hàng  #" . $data1->id . '</a></li>
+               ';
+            $data2 = Product::where('name', 'LIKE', "%{$query}%")->get();
+
+            $output .= '<li class ="px-3">' . "Sản phẩm"  . '</li>';
+            foreach ($data2 as $row) {
+                $output .= '
+               <li class ="px-3"><a href="' . route('product.detail', $row->id) . '">' . "  " . $row->id . "---" . $row->name . '</a></li>
+               ';
+            }
+            $data3 = Customer::where('fullname', 'LIKE', "%{$query}%")->get();
+            $output .= '<li class ="px-3">' . "Khách hàng"  . '</li>';
+            foreach ($data3 as $row) {
+                $output .= '
+               <li><a href="' . route('customer.profile', $row->id) . '">' . "  " . $row->id . "---" . $row->fullname . '</a></li>
+               ';
+            }
+
+            $data4 = User::where('fullname', 'LIKE', "%{$query}%")->get();
+            $output .= '<li class ="px-3">' . "Người dùng"  . '</li>';
+            foreach ($data4 as $row) {
+                    $output .= '
+               <li><a href="' . route('admin_user.profile', $row->id) . '">' . "  " . $row->id . "---" . $row->fullname . '</a></li>
+               ';
+            }
+
+            $output .= '</ul>';
+            echo $output;
+        }
     }
 }

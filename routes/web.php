@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('admin/current_user', [AdminUserController::class, 'current_user'])->name('current_user');
     // Route::post('reset_password', [AdminUserController::class, 'reset_password'])->name('reset_password');
     Route::get('admin/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('search_admin_ajax', [DashboardController::class, 'search_admin_ajax'])->name('search_admin_ajax');
     Route::get('admin/user/show', [AdminUserController::class, 'show'])->name('admin_user.show')->can('user.show');
     Route::get('admin/user/add', [AdminUserController::class, 'add'])->name('admin_user.add')->can('user.add');
     Route::post('admin/user/store', [AdminUserController::class, 'store'])->name('admin_user.store')->can('user.add');
