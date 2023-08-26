@@ -16,6 +16,8 @@ use App\Models\NotifiCation;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCompletedMail;
+use App\Models\Review;
+
 class ClientController extends Controller
 {
     //
@@ -33,7 +35,20 @@ class ClientController extends Controller
     function detail($name, $id)
     {
         $product = Product::find($id);
-        return view('client.product.detail', compact('product'));
+        $product_review_count = $product->reviews->count();
+        if ($product_review_count == 0) $product_review = 0;
+        else
+            $product_review = $product->reviews->sum('star') / $product_review_count;
+        $product_review = number_format($product_review, 1, '.', '');
+        if (Auth::guard('customers')->check()) {
+            $customer = Auth::guard('customers')->user();
+            $review = $customer->reviews->where('product_id', $product->id)->first();
+            if ($review)
+                $star = $review->star;
+            else $star = 0;
+            return view('client.product.detail', compact('product', 'star', 'product_review'));
+        };
+        return view('client.product.detail', compact('product', 'product_review'));
     }
     function cart_act($id, Request $request)
     {
@@ -79,9 +94,9 @@ class ClientController extends Controller
                 }
                 // return redirect()->route('c_product.detail', [$product->name, $product->id]);
             }
-            return redirect()->back()->with('status','Đã thêm sản phẩm vào giỏ hàng thành công');
+            return redirect()->back()->with('status', 'Đã thêm sản phẩm vào giỏ hàng thành công');
         } else if ($act == 'buy') {
-           $customer = Auth::guard('customers')->user();
+            $customer = Auth::guard('customers')->user();
             $color = $request->input('color');
             $count = $request->input('count');
             $data = [
@@ -106,7 +121,7 @@ class ClientController extends Controller
         $product = $data['product'];
         $count = $data['count'];
         $color = $data['color'];
-        return view('client.cart.buynow',compact('customer','product','count','color'));
+        return view('client.cart.buynow', compact('customer', 'product', 'count', 'color'));
     }
     function bn_completed(Request $request)
     {
@@ -124,7 +139,7 @@ class ClientController extends Controller
             'customer_id' => $customer->id,
             'payment_status' => 'Chưa thanh toán',
             'payment_method' => $request->input('payment_method'),
-            'payment_amount' => $request->input('count') * $product->price * 0.91 + 50000,
+            'payment_amount' => $request->input('count') * $product->price * 0.91,
             'delivery_status' => 'Chờ xử lý',
             'delivery_address' => $delivery_address,
             'delivery_method' => $request->input('delivery_method'),
@@ -134,7 +149,7 @@ class ClientController extends Controller
         $order_detail = $order->orderDetails->first();
         Mail::to($customer->email)
             ->send(new OrderCompletedMail($order));
-        return view('client.cart.bn_completed',compact('customer','order','order_detail'));
+        return view('client.cart.bn_completed', compact('customer', 'order', 'order_detail'));
     }
     function cart_show()
     {
@@ -246,8 +261,8 @@ class ClientController extends Controller
         $order = Order::find($id);
         $order_details = $order->orderDetails;
         $customer = Auth::guard('customers')->user();
-         Mail::to($customer->email)
-        ->send(new OrderCompletedMail($order));
+        Mail::to($customer->email)
+            ->send(new OrderCompletedMail($order));
         return view('client.cart.completed', compact('order', 'order_details', 'customer'));
     }
     function search_type($type)
@@ -381,5 +396,22 @@ class ClientController extends Controller
         $products = Product::where('name', 'LIKE', "%{$key}%")->orWhere('type', 'LIKE', "%{$key}%")->get();
         $count = $products->count();
         return view('client.product.search_results', compact('products', 'key', 'count'));
+    }
+    function review(Request $request)
+    {
+        $star = $request->input('star');
+        $customer = Auth::guard('customers')->user();
+        $product_id = $request->input('product_id');
+        $review = $customer->reviews->where('product_id', $product_id)->first();
+        if ($review) {
+            $review->star = $star;
+            $review->save();
+        } else {
+            Review::create([
+                'customer_id' => $customer->id,
+                'product_id' => $product_id,
+                'star' => $star
+            ]);
+        }
     }
 }

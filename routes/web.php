@@ -182,6 +182,7 @@ Route::group(['prefix' => 'sapo'], function () {
         Route::post('profile/update', [ClientCustomerController::class, 'update'])->name('client.profile_update');
         Route::post('profile/edit_password', [ClientCustomerController::class, 'edit_password'])->name('client.profile_editpass');
         Route::post('feedback', [ClientCustomerController::class, 'feedback'])->name('client.feedback');
+        Route::get('review', [ClientController::class, 'review'])->name('review');
     });
 });
 

@@ -127,7 +127,7 @@
             position: relative;
         }
     </style>
-    <link rel="stylesheet" href="{{asset('client/css/toast-respon.css')}}">
+    <link rel="stylesheet" href="{{ asset('client/css/toast-respon.css') }}">
     <div id="wrapper">
         <div id="header">
             <div id="top-header" class="">
@@ -190,10 +190,12 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label style="font-size: 16px" class="text-secondary" for="s-feedback">Chọn mục
+                                            <label style="font-size: 16px" class="text-secondary" for="s-feedback">Chọn
+                                                mục
                                                 góp ý<b class="text-danger">*</b></label>
                                             <select class="form-control" name="section" id="s-feedback">
-                                                <option value="Báo lỗi-Chỉnh sửa giao diện web">Báo lỗi-Chỉnh sửa giao diện web</option>
+                                                <option value="Báo lỗi-Chỉnh sửa giao diện web">Báo lỗi-Chỉnh sửa giao
+                                                    diện web</option>
                                                 <option value="Góp ý phản ánh dịch vụ">Góp ý phản ánh dịch vụ</option>
                                                 <option value="Tư vấn thiết kế website">Tư vấn thiết kế website</option>
                                                 <option value="Hỗ trợ vấn đề khác">Hỗ trợ vấn đề khác</option>
@@ -263,29 +265,34 @@
                                     hệ</span></a>
                         </li>
                         <li class="nr-item center">
-                            <a class="nri-item" href="#"><i class="fa-solid fa-pen center"></i><span>Góp
-                                    ý</span></a>
+                            <span class="nri-item" data-bs-toggle="modal"
+                                data-bs-target="#modalfeedback"><i class="fa-solid fa-pen center"></i><span>Góp
+                                    ý</span></span>
+                            <!-- Button trigger modal -->
+                            <!-- Modal -->
+
 
                         </li>
-                        
-                            <li class="nr-item center">
-                                <a class="nri-item" href="{{ route('client.profile', ['status' => 'show']) }}"><i
-                                        class="fa-regular fa-user center"></i><span>Tài
-                                        khoản</span></a>
-                 
-                        
-                            <li class="nr-item center">
-                                <a class="nri-item" href="{{ route('client.cart_show') }}"><i
-                                        class="fa-solid fa-cart-shopping center"></i><span>Giỏ
-                                        hàng</span></a>
-                            </li>
-                     
+
+                        <li class="nr-item center">
+                            <a class="nri-item" href="{{ route('client.profile', ['status' => 'show']) }}"><i
+                                    class="fa-regular fa-user center"></i><span>Tài
+                                    khoản</span></a>
+
+
+                        <li class="nr-item center">
+                            <a class="nri-item" href="{{ route('client.cart_show') }}"><i
+                                    class="fa-solid fa-cart-shopping center"></i><span>Giỏ
+                                    hàng</span></a>
+                        </li>
+
                     </ul>
                     <div class="nr-child">
                         <ul class="list-bot">
                             <li class="nr-child-item">
-                                <a href="{{ route('client.search_type', ['Điện thoại']) }}" class="nrct-img center"><img
-                                        src="{{ asset('client/img/icon_menu_1.webp') }}" alt=""></a>
+                                <a href="{{ route('client.search_type', ['Điện thoại']) }}"
+                                    class="nrct-img center"><img src="{{ asset('client/img/icon_menu_1.webp') }}"
+                                        alt=""></a>
                                 <a href="">Điện thoại</a>
                             </li>
                             <li class="nr-child-item">
@@ -304,13 +311,15 @@
                                 <a href="">Loa</a>
                             </li>
                             <li class="nr-child-item">
-                                <a href="{{ route('client.search_type', ['Phụ kiện']) }}" class="nrct-img center"><img
-                                        src="{{ asset('client/img/icon_menu_5.webp') }}" alt=""></a>
+                                <a href="{{ route('client.search_type', ['Phụ kiện']) }}"
+                                    class="nrct-img center"><img src="{{ asset('client/img/icon_menu_5.webp') }}"
+                                        alt=""></a>
                                 <a href="">Phụ kiện</a>
                             </li>
                             <li class="nr-child-item">
-                                <a href="{{ route('client.search_type', ['Máy tính bảng']) }}" class="nrct-img center"><img
-                                        src="{{ asset('client/img/icon_menu_6.webp') }}" alt=""></a>
+                                <a href="{{ route('client.search_type', ['Máy tính bảng']) }}"
+                                    class="nrct-img center"><img src="{{ asset('client/img/icon_menu_6.webp') }}"
+                                        alt=""></a>
                                 <a href="">Máy tính bảng</a>
                             </li>
                             <li class="nr-child-item">
@@ -515,8 +524,63 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalfeedback" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('client.feedback') }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Gửi góp ý</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label style="font-size: 16px" class="text-secondary" for="s-feedback">Chọn mục
+                                góp ý<b class="text-danger">*</b></label>
+                            <select class="form-control" name="section" id="s-feedback">
+                                <option value="Báo lỗi-Chỉnh sửa giao diện web">Báo lỗi-Chỉnh sửa giao diện web
+                                </option>
+                                <option value="Góp ý phản ánh dịch vụ">Góp ý phản ánh dịch vụ</option>
+                                <option value="Tư vấn thiết kế website">Tư vấn thiết kế website</option>
+                                <option value="Hỗ trợ vấn đề khác">Hỗ trợ vấn đề khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 16px" class="text-secondary" for="title">Tiêu
+                                đề<b class="text-danger">*</b></label>
+                            <input type="text" name="title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 16px" class="text-secondary" for="content-feedback">Nội dung<b
+                                    class="text-danger">*</b></label>
+                            <textarea class="form-control" name="content" id="content-feedback" cols="" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button name="btn_send" class="btn btn-primary">Gửi yêu cầu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modalId = document.getElementById('modalfeedback');
+
+        modalId.addEventListener('show.bs.modal', function(event) {
+            // Button that triggered the modal
+            let button = event.relatedTarget;
+            // Extract info from data-bs-* attributes
+            let recipient = button.getAttribute('data-bs-whatever');
+
+            // Use above variables to manipulate the DOM
+        });
+    </script>
 </body>
-<link rel="stylesheet" href="{{asset('client/css/index-respon.css')}}">
+<link rel="stylesheet" href="{{ asset('client/css/index-respon.css') }}">
 <script>
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {

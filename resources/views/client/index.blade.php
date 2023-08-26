@@ -41,6 +41,9 @@
         <div class="img-cover">
             <img src="{{ asset('client/img/big_bn_slide.webp') }}" alt="">
         </div>
+        <div class="respon-img-cover">
+            <img src="{{asset('client/img/609fa687874b84361fc495db_đt.jpg')}}" alt="">
+        </div>
         <div class="slide center">
             <div class="slide-img-cover">
                 <div class="owl-carousel owl-theme">
@@ -281,7 +284,7 @@
 </div>
 <div id="list-smart-phone">
 <div class="top-list">
-    <a href="" class="list-title">ĐIỆN THOẠI NỔI BẬT</a>
+    <a href="{{ route('client.search_type', ['Điện thoại']) }}" class="list-title">ĐIỆN THOẠI NỔI BẬT</a>
     <ul class="list-cat-in-product">
         <li class="center"><a class=""
                 href="{{ route('client.search_key', ['Điện thoại', 'supplier', 'Galaxy Ford']) }}">Galaxy
@@ -344,7 +347,7 @@
 </div>
 <div id="list-laptop">
 <div class="top-list">
-<a href="" class="list-title">LAPTOP HOT</a>
+<a href="{{ route('client.search_type', ['Laptop']) }}" class="list-title">LAPTOP HOT</a>
 <ul class="list-cat-in-product">
     <li class="center"><a class=""
             href="{{ route('client.search_key', ['Laptop', 'name', 'Macbook']) }}">Markbook</a></li>

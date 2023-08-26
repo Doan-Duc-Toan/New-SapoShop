@@ -77,7 +77,7 @@
                                             @endif
                                         </td>
                                         <td class="">
-                                            <div><span class=""><b>{{number_format($customer->orders->sum('payment_amount'), 0, '.', ',') . ' đ'}}</b></span></div>
+                                            <div><span class=""><b>{{number_format($customer->orders->where('delivery_status','Hoàn thành')->sum('payment_amount'), 0, '.', ',') . ' đ'}}</b></span></div>
                                         </td>
 
                                     </tr>

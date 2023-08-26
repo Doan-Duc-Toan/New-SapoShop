@@ -345,7 +345,7 @@
                             border: 1px solid #747373;
                             font-size: 17px;
                             font-weight: 500;">
-                                50,000đ</td>
+                               Miễn phí</td>
                         </tr>
                         <tr style="background-color: #FFFFFF;">
                             <td colspan="5"

@@ -164,6 +164,12 @@
 }
 
 @media (max-width:575.98px) {
+    .img-cover{
+        display: none;
+    }
+    .respon-img-cover{
+        display: block;
+    }
     #wrapper{
         width:100vw;
     }
@@ -192,7 +198,9 @@
         padding: 10px 0px;
 
     }
-
+    #strong-point{
+        padding:0px 10px;
+    }
     ul.list-product li a span.pr-name {
         font-size: 11px;
     }
@@ -274,5 +282,13 @@
     #list-result .search_name{
         font-size:11px;
     }
-    }
+    #strong-point{
+        display:none;
+     }
+     #cat-ost{
+         margin-top:0px;
+     }
+     #content{
+         margin-top:0px;
+     }
 }

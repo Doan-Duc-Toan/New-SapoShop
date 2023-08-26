@@ -1,44 +1,74 @@
 @extends('client.layout')
 @section('content')
+    <style>
+        #offers {
+            margin-top: 20px;
+            /* display:none; */
+        }
+
+        #offers span {
+            color: #4c4c4c;
+            font-size: 16px
+        }
+
+        #review {
+            flex-basis: 100%
+        }
+
+        .star-active {
+            color: #f9ca24;
+        }
+
+        #review span {
+            font-size: 18px;
+            color: #bf9603;
+            font-weight: 600;
+        }
+
+        #review i {
+            cursor: pointer;
+        }
+    </style>
 
     @if (!empty(session('status')))
-            <script>
-                $(document).ready(function() {
-                    setTimeout(function() {
-                        $(".wr-toast").show(500)
-                    }, 0)
-                    setTimeout(function() {
-                        $(".wr-toast").hide(500); // Ẩn trong 0.5 giây
-                    }, 4000);
-                    $('.toast-x').click(function() {
-                        $(".toast-notify").hide(500);
-                    })
+        <script>
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $(".wr-toast").show(500)
+                }, 0)
+                setTimeout(function() {
+                    $(".wr-toast").hide(500); // Ẩn trong 0.5 giây
+                }, 4000);
+                $('.toast-x').click(function() {
+                    $(".toast-notify").hide(500);
                 })
-            </script>
-            <div class="wr-toast">
-                <div class="toast-notify">
-                    <div class="toast-icon center">
-                        <span class="center"><i class="fa-solid fa-check"></i></span>
-                    </div>
-                    <div class="toast-body">
-                        <span class="toast-title">
-                            <b>Thành công</b>
-                        </span><br>
-                        <span class="toast-content">
-                            {{session('status')}}
-                        </span>
-                    </div>
-                    <div class="toast-x">
-                        <span><i class="fa-solid fa-x"></i></span>
-                    </div>
+            })
+        </script>
+        <div class="wr-toast">
+            <div class="toast-notify">
+                <div class="toast-icon center">
+                    <span class="center"><i class="fa-solid fa-check"></i></span>
+                </div>
+                <div class="toast-body">
+                    <span class="toast-title">
+                        <b>Thành công</b>
+                    </span><br>
+                    <span class="toast-content">
+                        {{ session('status') }}
+                    </span>
+                </div>
+                <div class="toast-x">
+                    <span><i class="fa-solid fa-x"></i></span>
                 </div>
             </div>
-        @endif
+        </div>
+    @endif
     <link rel="stylesheet" href="{{ asset('client/css/product-detail.css') }}">
-    <link rel="stylesheet" href="{{asset('client/css/toast-respon.css')}}">
+    <link rel="stylesheet" href="{{ asset('client/css/toast-respon.css') }}">
     <nav id="breadcrumb-nav" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('client.index') }}"><i class="fa-solid fa-house"></i> Trang chủ</a>
+            <li class="breadcrumb-item"><a href="{{ route('client.index') }}"><i class="fa-solid fa-house"></i> Trang
+                    chủ</a>
             </li>
             <li class="breadcrumb-item"><a href="#">{{ $product->type }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
@@ -46,7 +76,41 @@
         </ol>
     </nav>
     <div id="content">
-        <span class="product-name">{{ $product->name }}</span>
+        @if ($product_review == 0)
+            <span class="product-name">{{ $product->name }} ( <span style="font-size: 15px">Chưa có đánh giá</span> )</span>
+        @else
+        <span class="product-name">{{ $product->name }} ({{ $product_review }}<i
+                class="fa-regular fa-star star-active"></i>)</span>
+        @endif
+        @if (Auth::guard('customers')->check())
+            <div id="review">
+                <span>Đánh giá của bạn: </span>
+                @if ($star > 0)
+                    @for ($i = 1; $i <= $star; $i++)
+                        <i class="fa-regular fa-star star-active"
+                            id="@php if($i==1)echo 'one_'.$product->id;
+                                    if($i==2)echo 'two_'.$product->id;
+                                    if($i==3)echo 'three_'.$product->id;
+                                    if($i==4)echo 'four_'.$product->id;
+                                    if($i==5)echo 'five_'.$product->id; @endphp"></i>
+                    @endfor
+                    @for ($i = $star + 1; $i <= 5; $i++)
+                        <i class="fa-regular fa-star"
+                            id="@php if($i==1)echo 'one_'.$product->id;
+                            if($i==2)echo 'two_'.$product->id;
+                            if($i==3)echo 'three_'.$product->id;
+                            if($i==4)echo 'four_'.$product->id;
+                            if($i==5)echo 'five_'.$product->id; @endphp"></i>
+                    @endfor
+                @else
+                    <i class="fa-regular fa-star" id="one_{{ $product->id }}"></i>
+                    <i class="fa-regular fa-star" id="two_{{ $product->id }}"></i>
+                    <i class="fa-regular fa-star" id="three_{{ $product->id }}"></i>
+                    <i class="fa-regular fa-star" id="four_{{ $product->id }}"></i>
+                    <i class="fa-regular fa-star" id="five_{{ $product->id }}"></i>
+                @endif
+            </div>
+        @endif
         <div id="product-detail">
             <div id="product-main-slide">
                 <div class="img-main">
@@ -86,7 +150,7 @@ if($count == 1 ) echo 'img-active';
                         @endphp
                         @foreach ($product->colors as $color)
                             @php
-                                $thumb = $product->thumbs->where('color_id',$color->id)->first();
+                                $thumb = $product->thumbs->where('color_id', $color->id)->first();
                             @endphp
                             <div class="color-item @php
 if($count == 1 ) echo 'c-active'; @endphp">
@@ -103,24 +167,30 @@ if($count == 1 ) echo 'checked'; $count = 0; @endphp
                         @endforeach
                     </div>
                 </div>
-                @if($product->count > 0)
-                 <div class="count">
-                    <span class="center c-title">Số lượng</span>
-                    <span class="sub num center no-select">-</span>
-                    <span class="add num center no-select">+</span>
-                    <input type="number" name="count" min="1" value="1">
-                 </div>
-                 <div class="buy">
-                    <button name="btn_act" value="buy" class="buy-now">MUA NGAY<br> <span>(Giao tận nơi hoặc lấy tại
-                            cửa
-                            hàng)</span></button>
-                    <button name="btn_act" value="add_cart" class="add-cart"><i
-                            class="fa-solid fa-cart-shopping center"></i><span>Thêm
-                            vào giỏ</span></button>
-                 </div>
+                @if ($product->count > 0)
+                    <div class="count">
+                        <span class="center c-title">Số lượng</span>
+                        <span class="sub num center no-select">-</span>
+                        <span class="add num center no-select">+</span>
+                        <input type="number" name="count" min="1" value="1">
+                    </div>
+                    <div class="buy">
+                        <button name="btn_act" value="buy" class="buy-now">MUA NGAY<br> <span>(Giao tận nơi hoặc lấy
+                                tại
+                                cửa
+                                hàng)</span></button>
+                        <button name="btn_act" value="add_cart" class="add-cart"><i
+                                class="fa-solid fa-cart-shopping center"></i><span>Thêm
+                                vào giỏ</span></button>
+                    </div>
                 @endif
-                
+
             </form>
+            <div id="offers">
+                <span>1. Miễn phí vận chuyển toàn quốc đối với sản phẩm đặt hàng Online</span><br>
+                <span>2. Tặng kèm phiếu bảo hành 2 năm đối với tất cả sản phẩm trên SapoShop</span><br>
+                <span>3. Tặng phiếu mua hàng trị giá 200,000VNĐ (Áp dụng khi mua hàng trực tiếp tại Shop)</span>
+            </div>
         </div>
         <div id="product-detail-bot">
             <p>{!! $product->description !!}</p>
@@ -158,8 +228,8 @@ if($count == 1 ) echo 'checked'; $count = 0; @endphp
             </div>
 
 
-            <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-                role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static"
+                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -181,7 +251,7 @@ if($count == 1 ) echo 'checked'; $count = 0; @endphp
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="{{asset('client/css/pdetail-respon.css')}}">
+<link rel="stylesheet" href="{{ asset('client/css/pdetail-respon.css') }}">
 <script>
     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
 </script>
@@ -257,6 +327,42 @@ if($count == 1 ) echo 'checked'; $count = 0; @endphp
             );
             $(this).css('display', 'none');
             $('.see-more').css('display', 'inline');
+        })
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $("#review i").click(function() {
+            $("#review i").removeClass("star-active");
+            $(this).addClass("star-active");
+            $(this).prevAll().addClass("star-active");
+            var star_id = $(this).attr("id");
+            var star;
+            var id;
+            var parts = star_id.split('_');
+            if (parts.length === 2) {
+                var id = parts[0];
+                var product_id = parseInt(parts[1]);
+            }
+            if (id == 'one') star = 1;
+            if (id == 'two') star = 2;
+            if (id == 'three') star = 3;
+            if (id == 'four') star = 4;
+            if (id == 'five') star = 5;
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('review') }}",
+                data: {
+                    star: star,
+                    product_id: product_id
+                },
+                success: function() {
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         })
     })
 </script>

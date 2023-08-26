@@ -31,4 +31,8 @@ class Product extends Model
     public function thumbs(){
         return $this->hasMany(Thumb::class);
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class,'product_id');
+    }
 }
