@@ -12,7 +12,8 @@
         }
 
         #review {
-            flex-basis: 100%
+            flex-basis: 100%;
+            margin: 10px 0px;
         }
 
         .star-active {

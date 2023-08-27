@@ -11,7 +11,8 @@
         </div>
         <div class="main-content row col-md-12 p-3">
             <ul class="status col-md-12 d-flex">
-                <li class="status-item all"><a href="{{route('product.show')}}" class="filter-products list-active">Tất cả sản phẩm</a></li>
+                <li class="status-item all"><a href="{{ route('product.show') }}" class="filter-products list-active">Tất cả
+                        sản phẩm</a></li>
             </ul>
             <form action="{{ route('product.filter') }}" method="POST">
                 @csrf
@@ -128,6 +129,7 @@
                                     <th scope="col">Kho</th>
                                     <th scope="col">Loại</th>
                                     <th scope="col">Nhà cung cấp</th>
+                                    <th scope="col">Đánh giá</th>
                                     <th scope="col">Ngày tạo</th>
                                 </tr>
                             </thead>
@@ -147,7 +149,8 @@
                                                         class="product-name">{{ $product->name }}</span></a></div>
                                         </td>
                                         <td>
-                                            <div><span>{{number_format($product->price, 0, ".", ",") . " VND"}}</span></div>
+                                            <div><span>{{ number_format($product->price, 0, '.', ',') . ' VND' }}</span>
+                                            </div>
                                         </td>
                                         <td>
                                             <div><span>{{ $product->count }}</span></div>
@@ -157,6 +160,18 @@
                                         </td>
                                         <td>
                                             <div><span class="badge bg-success">{{ $product->supplier }}</span></div>
+                                        </td>
+                                        <td>
+                                            <div><span>@php
+                                                $product_review_count = $product->reviews->count();
+                                                if ($product_review_count == 0) {
+                                                    $product_review = 0;
+                                                } else {
+                                                    $product_review = $product->reviews->sum('star') / $product_review_count;
+                                                }
+                                                $product_review = number_format($product_review, 1, '.', '');
+                                            @endphp {{ $product_review }}<i
+                                                        class="fa-solid fa-star star-active" style="color:#f0d160"></i></span></div>
                                         </td>
                                         <td>
                                             <div><span>{{ $product->created_at }}</span></div>
@@ -174,29 +189,26 @@
         </div>
     </div>
     <script>
-            $(".search input").keyup(function() {
-                var query = $(this).val();
-                if (query != null) {
-                    $.ajax({
-                        type: 'GET',
-                        url: "{{ route('product.search_ajax') }}",
-                        data: {
-                            query: query,
-                        },
-                        success: function(data) {
-                            $('#countryList').fadeIn();
-                            $('#countryList').html(data);
-                        },
-                        // error: function(xhr) {
-                        //     console.log(xhr.responseText);
-                        // }
-                    });
-                } else {
-                    $('#countryList').fadeOut();
-                }
-            })
-
-
+        $(".search input").keyup(function() {
+            var query = $(this).val();
+            if (query != null) {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('product.search_ajax') }}",
+                    data: {
+                        query: query,
+                    },
+                    success: function(data) {
+                        $('#countryList').fadeIn();
+                        $('#countryList').html(data);
+                    },
+                    // error: function(xhr) {
+                    //     console.log(xhr.responseText);
+                    // }
+                });
+            } else {
+                $('#countryList').fadeOut();
+            }
+        })
     </script>
-   
 @endsection

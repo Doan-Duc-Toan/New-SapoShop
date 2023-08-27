@@ -4,45 +4,45 @@
     <link rel="stylesheet" href="{{ asset('client/js/OwlCarousel2-2.3.4/dist/assets/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('client/js/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css') }}">
     <script src="{{ asset('client/js/OwlCarousel2-2.3.4/dist/owl.carousel.js') }}"></script>
-     @if (!empty(session('status')))
-            <script>
-                $(document).ready(function() {
-                    setTimeout(function() {
-                        $(".wr-toast").show(500)
-                    }, 0)
-                    setTimeout(function() {
-                        $(".wr-toast").hide(500); // Ẩn trong 0.5 giây
-                    }, 4000);
-                    $('.toast-x').click(function() {
-                        $(".toast-notify").hide(500);
-                    })
+    @if (!empty(session('status')))
+        <script>
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $(".wr-toast").show(500)
+                }, 0)
+                setTimeout(function() {
+                    $(".wr-toast").hide(500); // Ẩn trong 0.5 giây
+                }, 4000);
+                $('.toast-x').click(function() {
+                    $(".toast-notify").hide(500);
                 })
-            </script>
-            <div class="wr-toast">
-                <div class="toast-notify">
-                    <div class="toast-icon center">
-                        <span class="center"><i class="fa-solid fa-check"></i></span>
-                    </div>
-                    <div class="toast-body">
-                        <span class="toast-title">
-                            <b>Thành công</b>
-                        </span><br>
-                        <span class="toast-content">
-                            {{session('status')}}
-                        </span>
-                    </div>
-                    <div class="toast-x">
-                        <span><i class="fa-solid fa-x"></i></span>
-                    </div>
+            })
+        </script>
+        <div class="wr-toast">
+            <div class="toast-notify">
+                <div class="toast-icon center">
+                    <span class="center"><i class="fa-solid fa-check"></i></span>
+                </div>
+                <div class="toast-body">
+                    <span class="toast-title">
+                        <b>Thành công</b>
+                    </span><br>
+                    <span class="toast-content">
+                        {{ session('status') }}
+                    </span>
+                </div>
+                <div class="toast-x">
+                    <span><i class="fa-solid fa-x"></i></span>
                 </div>
             </div>
-        @endif
+        </div>
+    @endif
     <div id="cover">
         <div class="img-cover">
             <img src="{{ asset('client/img/big_bn_slide.webp') }}" alt="">
         </div>
         <div class="respon-img-cover">
-            <img src="{{asset('client/img/609fa687874b84361fc495db_đt.jpg')}}" alt="">
+            <img src="{{ asset('client/img/609fa687874b84361fc495db_đt.jpg') }}" alt="">
         </div>
         <div class="slide center">
             <div class="slide-img-cover">
@@ -136,8 +136,8 @@
                         <span>Ốp lưng, bao da</span></a>
                 </li>
                 <li class="cat-item">
-                    <a href="{{ route('client.search_type', ['Loa']) }}"> <img src="{{ asset('client/img/th (9).jpg') }}"
-                            alt="">
+                    <a href="{{ route('client.search_type', ['Loa']) }}"> <img
+                            src="{{ asset('client/img/th (9).jpg') }}" alt="">
                         <span>Loa</span></a>
                 </li>
                 <li class="cat-item">
@@ -179,7 +179,7 @@
         </div>
         <div id="flash-sale">
             <div class="fs-title">
-                <img src="{{asset('client/img/flash-sale-1784897-1521723.png')}}" alt="">
+                <img src="{{ asset('client/img/flash-sale-1784897-1521723.png') }}" alt="">
                 <h4 class="center">FLASH SALE</h4>
             </div>
             <ul class="list-product">
@@ -202,7 +202,7 @@
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                                 role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="1"
-                                style="width: {{ $product->sold * 100 / $product->count }}%"></div>
+                                style="width: {{ ($product->sold * 100) / $product->count }}%"></div>
                         </div>
                         <span class="pr-name">{{ $product->name }}</span>
                     </a>
@@ -259,7 +259,7 @@
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="1"
-                        style="width: {{ $product->sold * 100 / $product->count }}%"></div>
+                        style="width: {{ ($product->sold * 100) / $product->count }}%"></div>
                 </div>
                 <span class="pr-name">{{ $product->name }}</span>
             </a>
@@ -322,7 +322,7 @@
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="1"
-                        style="width: {{ $product->sold * 100 / $product->count }}%"></div>
+                        style="width: {{ ($product->sold * 100) / $product->count }}%"></div>
                 </div>
                 <span class="pr-name">{{ $product->name }}</span>
             </a>
@@ -374,7 +374,7 @@
             <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                     role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="1"
-                    style="width: {{ $product->sold * 100 / $product->count }}%"></div>
+                    style="width: {{ ($product->sold * 100) / $product->count }}%"></div>
             </div>
             <span class="pr-name">{{ $product->name }}</span>
         </a>
@@ -415,6 +415,43 @@
             autoplay: true,
             autoplayTimeout: 5000,
             autoplayHoverPause: true
+        });
+        $(window).on('load resize', function() {
+            if ($(window).width() < 1385) {
+                // Ẩn hai thẻ cuối cùng trong danh sách
+                $('ul.list-cat li:last-child').hide();
+                $('ul.list-cat li:nth-last-child(2)').hide();
+                $('ul.list-product li:last-child').hide();
+                $('ul.list-product li:nth-last-child(2)').hide();
+            } else {
+                // Hiển thị lại hai thẻ cuối cùng nếu độ rộng màn hình lớn hơn hoặc bằng 981px
+                $('ul.list-cat li:last-child').show();
+                $('ul.list-cat li:nth-last-child(2)').show();
+                $('ul.list-product li:last-child').show();
+                $('ul.list-product li:nth-last-child(2)').show();
+            }
+
+            if ($(window).width() < 1183) {
+                $('ul.list-cat li').eq(5).hide();
+                $('ul.list-cat li').eq(6).hide();
+            } else {
+                $('ul.list-cat li').eq(5).show();
+                $('ul.list-cat li').eq(6).show();
+            }
+            if ($(window).width() < 975) {
+                $('#flash-sale ul.list-product li:last-child').show();
+                $('#product-for-u ul.list-product li').eq(1).hide();
+                $('#product-for-u ul.list-product li').eq(2).hide();
+
+            } else {
+                // $('#flash-sale ul.list-product li:last-child').hide();
+                $('#product-for-u ul.list-product li').eq(1).show();
+                $('#product-for-u ul.list-product li').eq(2).show();
+            }
+            if ($(window).width() < 752) {
+                $('ul.list-product li').show();
+            }
+
         });
     })
 </script>
