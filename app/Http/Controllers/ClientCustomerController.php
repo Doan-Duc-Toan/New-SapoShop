@@ -138,10 +138,9 @@ class ClientCustomerController extends Controller
         return view('client.recover_pass');
     }
     function reset_pass(Request $request){
-        $validate = $request->validate([
-            'email' => 'required|email'
-            ]);
+        
         $email = $request->input('email');
+        if(empty(Customer::where('email',$email)->first()))return redirect()->route('client.login')->with('notify','Tài khoản bạn nhập không tồn tại trong hệ thống');
         $password =Str::random(8);
         $new_pass = Hash::make($password);
         Customer::where('email', $email)->update(['password' => $new_pass]);
