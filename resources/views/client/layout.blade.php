@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -16,8 +17,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
-    <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
     <script src="{{ asset('client/js/jquery.js') }}"></script>
+
+    <link rel="stylesheet" href="{{asset('client/css/chat.css')}}">
+    <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('client/css/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/layout-respon.css') }}">
@@ -125,6 +128,25 @@
 
         #search {
             position: relative;
+        }
+        .chat_icon{
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            z-index: 100;
+            cursor: pointer;
+            padding: 10px;
+            background: rgb(117, 117, 222);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chat_icon span{
+            font-size: 25px;
+            color: #FFFFFF;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('client/css/toast-respon.css') }}">
@@ -421,6 +443,10 @@
             </div>
         </div>
         <div class="" id="wr-content">
+            <div class="chat_icon">
+                @include('client.chat')
+               <span class="chat-click"><i class="fa-solid fa-headset"></i></span>
+            </div>
             @yield('content')
         </div>
         <div id="footer">
@@ -581,6 +607,7 @@
     </script>
 </body>
 <link rel="stylesheet" href="{{ asset('client/css/index-respon.css') }}">
+
 <script>
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
@@ -590,6 +617,8 @@
         container: 'body'
     })
 </script>
+
+<script src="{{asset('chat.js')}}"></script>
 <script>
     $("#search input").keyup(function() {
         var query = $(this).val();

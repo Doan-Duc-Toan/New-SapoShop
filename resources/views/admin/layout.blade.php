@@ -33,15 +33,17 @@
             color: #0388FD !important;
             font-weight: 700;
         }
-        #search_result{
+
+        #search_result {
             max-height: 75vh;
         }
-        ul.dropdown-menu{
+
+        ul.dropdown-menu {
             max-height: 75vh !important;
             overflow: scroll;
         }
     </style>
-    
+
     <div id="wrapper" class="container">
         <div class="row">
             <div class="col-md-2" id="sidebar">
@@ -104,6 +106,7 @@
                                     class="fa-solid fa-users"></i><span>Danh sách khách
                                     hàng</span></a>
                         </li>
+                        
                         @canany(['permission.add', 'permission.show', 'permission.delete', 'permission.edit',
                             'role.add', 'role.edit', 'role.delete', 'role.show'])
                             <li class="col-md-12 nav-item" id="role">
@@ -141,6 +144,10 @@
                                     </li>
                                 </div>
                             </ul>
+                        </li>
+                        <li class="col-md-12 nav-item" id="chat-online">
+                            <a href="{{ route('advise') }}" class="item-link"><i
+                                    class="fa-solid fa-comments"></i><span>Tư vấn</span></a>
                         </li>
                     </ul>
                 </div>
@@ -221,7 +228,7 @@
                                 <span class="status">Online</span>
                             </div>
                         </div>
-                        <div class="col-md-1" id="notify"><a href="http://localhost/backup-25-08-2023/Sapo/chatify"><i
+                        <div class="col-md-1" id="notify"><a href="http://localhost/Sapo/chatify"><i
                                     class="fa-regular fa-comments"></i></a></div>
                     </div>
                 </div>

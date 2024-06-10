@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCompletedMail;
 use App\Models\Review;
-
+use App\Events\MessageSend;
 class ClientController extends Controller
 {
     //
 
     function index()
     {
+        event(new MessageSend('Tạm biệt'));
         $products = Product::all();
         // $product = Product::find(8);
         //  return $product->thumbs;
