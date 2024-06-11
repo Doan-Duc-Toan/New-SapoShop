@@ -26,4 +26,7 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(Review::class,'customer_id');
     }
+    public function conversations(){
+        return $this->hasMany(Conversation::class,'customer_id');
+    }
 }

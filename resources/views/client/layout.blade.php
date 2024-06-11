@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,7 +20,7 @@
     </script>
     <script src="{{ asset('client/js/jquery.js') }}"></script>
 
-    <link rel="stylesheet" href="{{asset('client/css/chat.css')}}">
+    <link rel="stylesheet" href="{{ asset('client/css/chat.css') }}">
     <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('client/css/layout.css') }}">
@@ -129,12 +130,13 @@
         #search {
             position: relative;
         }
-        .chat_icon{
+
+        .chat_icon {
             position: fixed;
             bottom: 100px;
             right: 100px;
-            height: 70px;
-            width: 70px;
+            height: 60px;
+            width: 60px;
             border-radius: 50%;
             z-index: 100;
             cursor: pointer;
@@ -144,7 +146,8 @@
             justify-content: center;
             align-items: center;
         }
-        .chat_icon span{
+
+        .chat_icon span {
             font-size: 25px;
             color: #FFFFFF;
         }
@@ -287,8 +290,8 @@
                                     hệ</span></a>
                         </li>
                         <li class="nr-item center">
-                            <span class="nri-item" data-bs-toggle="modal"
-                                data-bs-target="#modalfeedback"><i class="fa-solid fa-pen center"></i><span>Góp
+                            <span class="nri-item" data-bs-toggle="modal" data-bs-target="#modalfeedback"><i
+                                    class="fa-solid fa-pen center"></i><span>Góp
                                     ý</span></span>
                             <!-- Button trigger modal -->
                             <!-- Modal -->
@@ -443,10 +446,12 @@
             </div>
         </div>
         <div class="" id="wr-content">
-            <div class="chat_icon">
-                @include('client.chat')
-               <span class="chat-click"><i class="fa-solid fa-headset"></i></span>
-            </div>
+            @if (Auth::guard('customers')->check())
+                <div class="chat_icon">
+                    @include('client.chat')
+                    <span class="chat-click"><i class="fa-solid fa-headset"></i></span>
+                </div>
+            @endif
             @yield('content')
         </div>
         <div id="footer">
@@ -618,7 +623,7 @@
     })
 </script>
 
-<script src="{{asset('chat.js')}}"></script>
+<script src="{{ asset('chat.js') }}"></script>
 <script>
     $("#search input").keyup(function() {
         var query = $(this).val();

@@ -48,6 +48,10 @@ class User extends Authenticatable
             if ($role->permissions->where('slug', $permission)->count() > 0) return true;
         return false;
     }
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class, 'user_id');
+    }
     /**
      * The attributes that should be cast.
      *

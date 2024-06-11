@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
@@ -18,8 +19,6 @@
             height: 100%;
         }
     </style>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12">
@@ -31,8 +30,19 @@
                             </div>
                             <input type="text" class="form-control" placeholder="Search...">
                         </div>
-                        <ul class="list-unstyled chat-list mt-2 mb-0">
-                            <li class="clearfix">
+                        <ul id="list-conversation" class="list-unstyled chat-list mt-2 mb-0" data-conversation-ids="@json($conversationIds)">
+                            @if ($conversations)
+                                @foreach ($conversations as $conversation)
+                                    <li class="clearfix conversation-item" data-conversation-id ="{{ $conversation->id }}">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                                        <div class="about">
+                                            <div class="name">{{ $conversation->customer->fullname }}</div>
+                                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
+                            {{-- <li class="clearfix">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                 <div class="about">
                                     <div class="name">Vincent Porter</div>
@@ -74,72 +84,19 @@
                                     <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
-                    <div class="chat">
-                        <div class="chat-header clearfix">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-                                    </a>
-                                    <div class="chat-about">
-                                        <h6 class="m-b-0">Aiden Chavez</h6>
-                                        <small>Last seen: 2 hours ago</small>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 hidden-sm text-right">
-                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i
-                                            class="fa fa-camera"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i
-                                            class="fa fa-image"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i
-                                            class="fa fa-cogs"></i></a>
-                                    <a href="{{route('dashboard')}}" class="btn btn-outline-warning"><i
-                                            class="fa-solid fa-house"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat-history">
-                            <ul class="m-b-0">
-                                <li class="clearfix">
-                                    <div class="message-data text-right">
-                                        <span class="message-data-time">10:10 AM, Today</span>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                    </div>
-                                    <div class="message other-message float-right"> Hi Aiden, how are you? How is the
-                                        project coming along? </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:12 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Are we meeting today?</div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:15 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Project has been already finished and I have
-                                        results to show you.</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="chat-message clearfix">
-                            <div class="input-group mb-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Enter text here...">
-                            </div>
-                        </div>
+                    <div class="chat" id="chatbox">
+                        <span>Hãy chọn 1 cuộc trò chuyện để bắt đầu</span>
+                        {{-- @include('admin.chat-box') --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script src="{{ asset('js/jquery.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
@@ -149,5 +106,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
 </script>
+<script src="{{ asset('chat-client.js') }}"></script>
 
 </html>

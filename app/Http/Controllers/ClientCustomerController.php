@@ -12,6 +12,9 @@ use App\Models\Feedback;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPassMail;
+use App\Models\User;
+use App\Models\Conversation;
+
 class ClientCustomerController extends Controller
 {
     //
@@ -54,6 +57,13 @@ class ClientCustomerController extends Controller
             'password' => Hash::make($request->input('password')),
             'address' => $address,
             'gender' => $gender,
+        ]);
+        $adminUserId = User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->first()->id;
+        Conversation::create([
+            'user_id' => $adminUserId,
+            'customer_id' => $customer->id
         ]);
         return redirect()->route('client.login')->with('status', 'Đã đăng kí tài khoản thành công');
     }
@@ -103,7 +113,7 @@ class ClientCustomerController extends Controller
             'address' => $address,
             'gender' => $gender,
         ]);
-        return redirect()->route('client.profile')->with('status','Đã cập nhật thông tin cá nhân thành công.');
+        return redirect()->route('client.profile')->with('status', 'Đã cập nhật thông tin cá nhân thành công.');
     }
     function edit_password(Request $request)
     {
@@ -117,8 +127,8 @@ class ClientCustomerController extends Controller
             ]);
             $customer->password = Hash::make($request->input('re_password'));
             $customer->save();
-            return redirect()->route('client.login')->with('status','Đã đổi mật khẩu thành công, hãy đăng nhập lại.');
-        } else return redirect()->route('client.profile', ['status' => 'change_pass'])->with('error','Mật khẩu bạn nhập không chính xác!');
+            return redirect()->route('client.login')->with('status', 'Đã đổi mật khẩu thành công, hãy đăng nhập lại.');
+        } else return redirect()->route('client.profile', ['status' => 'change_pass'])->with('error', 'Mật khẩu bạn nhập không chính xác!');
     }
     function feedback(Request $request)
     {
@@ -132,16 +142,18 @@ class ClientCustomerController extends Controller
             'title' => $request->input('title'),
             'content' => $request->input('content'),
         ]);
-        return redirect()->back()->with('status','Đã gửi góp ý của bạn thành công.');
+        return redirect()->back()->with('status', 'Đã gửi góp ý của bạn thành công.');
     }
-    function recover_pass(){
+    function recover_pass()
+    {
         return view('client.recover_pass');
     }
-    function reset_pass(Request $request){
-        
+    function reset_pass(Request $request)
+    {
+
         $email = $request->input('email');
-        if(empty(Customer::where('email',$email)->first()))return redirect()->route('client.login')->with('notify','Tài khoản bạn nhập không tồn tại trong hệ thống');
-        $password =Str::random(8);
+        if (empty(Customer::where('email', $email)->first())) return redirect()->route('client.login')->with('notify', 'Tài khoản bạn nhập không tồn tại trong hệ thống');
+        $password = Str::random(8);
         $new_pass = Hash::make($password);
         Customer::where('email', $email)->update(['password' => $new_pass]);
         $customer = Customer::where('email', $email)->get();
@@ -150,7 +162,7 @@ class ClientCustomerController extends Controller
             'password' => $password
         ];
         Mail::to($email)
-        ->send(new ResetPassMail($data));
-        return redirect()->route('client.login')->with('status','Đã gửi mật khẩu đến email của bạn thành công.');
+            ->send(new ResetPassMail($data));
+        return redirect()->route('client.login')->with('status', 'Đã gửi mật khẩu đến email của bạn thành công.');
     }
 }

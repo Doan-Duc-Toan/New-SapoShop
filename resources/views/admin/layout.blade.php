@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -106,7 +108,7 @@
                                     class="fa-solid fa-users"></i><span>Danh sách khách
                                     hàng</span></a>
                         </li>
-                        
+
                         @canany(['permission.add', 'permission.show', 'permission.delete', 'permission.edit',
                             'role.add', 'role.edit', 'role.delete', 'role.show'])
                             <li class="col-md-12 nav-item" id="role">
@@ -273,8 +275,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <script src="{{ asset('js/index.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

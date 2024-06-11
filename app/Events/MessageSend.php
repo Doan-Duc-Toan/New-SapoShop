@@ -18,10 +18,16 @@ class MessageSend implements ShouldBroadcast
      * Create a new event instance.
      */
     public $message;
-    public function __construct($message)
+    public $conversationId;
+    public $id;
+    public $type;
+    public function __construct($message, $conversationId, $id, $type)
     {
         //
         $this->message = $message;
+        $this->conversationId = $conversationId;
+        $this->id = $id;
+        $this->type = $type;
     }
 
     /**
@@ -36,11 +42,12 @@ class MessageSend implements ShouldBroadcast
     //     // ];
     //     return new Channel('messages');
     // }
-    public function broadcastOn():Channel
+    public function broadcastOn(): Channel
     {
-        return new Channel('messages');
+        return new PrivateChannel('messages.' . $this->conversationId);
     }
-    public function broadcastAs():string{
+    public function broadcastAs(): string
+    {
 
         return 'chat';
     }

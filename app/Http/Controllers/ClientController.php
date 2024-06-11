@@ -18,20 +18,32 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCompletedMail;
 use App\Models\Review;
 use App\Events\MessageSend;
+use App\Models\Message;
+use App\Models\Conversation;
+use App\Models\User;
+
 class ClientController extends Controller
 {
     //
 
     function index()
     {
-        event(new MessageSend('Tạm biệt'));
+        // event(new MessageSend('Tạm biệt'));
         $products = Product::all();
         // $product = Product::find(8);
         //  return $product->thumbs;
+        if (Auth::guard('customers')->check()) {
+            $customer = Auth::guard('customers')->user();
+            $conversation = $customer->conversations->first();
+            $messages = $conversation->messages;
+        } else {
+            $messages = [];
+            $conversation = [];
+        }
         $randomProducts = Product::inRandomOrder()->take(10)->get();
         $randomSPhones = Product::where('type', 'Điện thoại')->inRandomOrder()->take(8)->get();
         $randomLaptops = Product::where('type', 'Laptop')->inRandomOrder()->take(8)->get();
-        return view('client.index', compact('products', 'randomProducts', 'randomSPhones', 'randomLaptops'));
+        return view('client.index', compact('products', 'randomProducts', 'randomSPhones', 'randomLaptops', 'messages', 'conversation'));
     }
     function detail($name, $id)
     {

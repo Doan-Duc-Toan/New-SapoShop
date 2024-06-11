@@ -39,6 +39,7 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: "f02f767c4e4305be4576",
     cluster: "ap1",
-    forceTLS: true
+    forceTLS: true,
+    authEndpoint: '/Sapo/broadcasting/auth'
 });
 

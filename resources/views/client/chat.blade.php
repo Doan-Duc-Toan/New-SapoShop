@@ -1,7 +1,8 @@
-<div class="page-content page-container" id="page-content">
+<div class="page-content page-container" id="page-content" data-type = "customer" data-id="{{ $conversation->id }}">
     <div class="padding">
-        <div class="row container d-flex justify-content-center">
-            <div class="col-md-12">
+        <div class="row container d-flex justify-content-center" id="box-form">
+            <form id="form-send-message" data-url = "{{ route('chat.send') }}" method="POST" class="col-md-12">
+                @csrf
                 <div class="card card-bordered">
                     <div class="card-header">
                         <h4 class="card-title"><strong>Trò chuyện với chúng tôi</strong></h4>
@@ -11,7 +12,38 @@
 
                     <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
                         style="overflow-y: scroll !important; height:400px !important;">
-                        <div class="media media-chat">
+                        @if (!empty($messages->first()))
+                            @foreach ($messages as $message)
+                                @if ($message->type == 'customer')
+                                    <div class="media media-chat media-chat-reverse">
+                                        <div class="media-body">
+                                            <p>{{ $message->content }}</p>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="media media-chat">
+                                        <div class="media-body">
+                                            <p>{{ $message->content }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                            <span
+                                style="text-align:center;padding:10px 15px;display:inline-block;font-size:16px;color: #000000;font-weight:bold">Hãy
+                                đặt
+                                câu hỏi cho nhân viên chúng tôi để
+                                được tư vấn</span>
+                        @endif
+
+
+
+
+
+
+
+
+                        {{-- <div class="media media-chat">
                             <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png"
                                 alt="...">
                             <div class="media-body">
@@ -89,7 +121,7 @@
                         </div>
                         <div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;">
                             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="publisher bt-1 border-light">
@@ -106,7 +138,7 @@
                     </div>
 
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

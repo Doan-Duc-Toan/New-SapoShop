@@ -4,6 +4,12 @@
     right: 100px;
     display: none;
 }
+#box-form{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#form-send-message{
+    padding: 0;
+}
 
 .card-bordered {
     border: 1px solid #ebebeb;
@@ -202,6 +208,7 @@ h4.card-title {
 }
 
 .media-chat.media-chat-reverse {
+    display: flex;
     padding-right: 12px;
     padding-left: 64px;
     -webkit-box-orient: horizontal;
