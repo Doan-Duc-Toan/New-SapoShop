@@ -123,16 +123,20 @@
                             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                         </div> --}}
                     </div>
-
+                   
                     <div class="publisher bt-1 border-light">
                         <img class="avatar avatar-xs"
                             src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
-                        <input class="publisher-input" type="text" placeholder="Write something">
+
+                        <input class="publisher-input" id="output" type="text"
+                            placeholder="Write something">
+
                         <span class="publisher-btn file-group">
                             <i class="fa fa-paperclip file-browser"></i>
                             <input type="file">
                         </span>
-                        <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
+                        <span id="test" class="emoji-picker-container publisher-btn"><i
+                                class="fa fa-smile"></i></span>
                         <a class="publisher-btn text-info" href="#" data-abc="true"><i
                                 class="fa fa-paper-plane"></i></a>
                     </div>

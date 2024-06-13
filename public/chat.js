@@ -30,39 +30,40 @@ $(document).ready(function () {
     ///////////send message client/////////
     $("#form-send-message").submit(function (e) {
         e.preventDefault();
-        let message = $(".publisher-input").val();
+        let message = $(".publisher-input").val().trim();
+        if (message.length > 0) {
+            let type = $("#page-content").data('type');
+            let html = '<div class="media media-chat media-chat-reverse">'
+                + '<div class="media-body">'
+                + '<p>' + message + '</p>'
+                + '</div>'
+                + '</div>'
+            $("#chat-content").append(html);
+            let url = $(this).data('url');
 
-        let type = $("#page-content").data('type');
-        let html = '<div class="media media-chat media-chat-reverse">'
-            + '<div class="media-body">'
-            + '<p>' + message + '</p>'
-            + '</div>'
-            + '</div>'
-        $("#chat-content").append(html);
-        let url = $(this).data('url');
+            $(".publisher-input").val('');
+            let $myDiv = $('#chat-content');
+            $myDiv.animate({
+                scrollTop: $myDiv.prop("scrollHeight")
+            }, 1000);
 
-        $(".publisher-input").val('');
-        let $myDiv = $('#chat-content');
-        $myDiv.animate({
-            scrollTop: $myDiv.prop("scrollHeight")
-        }, 1000);
-
-        $.ajax({
-            url: url,
-            type: 'GET',
-            data: {
-                _token: '{{ csrf_token() }}',
-                message: message,
-                conversationId: conversationId,
-                type: type
-            },
-            success: function (response) {
-                console.log(response.mess);
-            },
-            error: function (xhr, status, error) {
-                console.error('Error: ', error);
-            }
-        });
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    message: message,
+                    conversationId: conversationId,
+                    type: type
+                },
+                success: function (response) {
+                    console.log(response.mess);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error: ', error);
+                }
+            });
+        }
     })
 
     ///////////click conversation to get id///////////
@@ -85,5 +86,21 @@ $(document).ready(function () {
             }
         });
     })
+
+
+
+    var emojiKeyboard = new EmojiKeyboard();
+    emojiKeyboard.instantiate(document.getElementById("test"));
+
+    const output = document.getElementById("output");
+    emojiKeyboard.callback = (emoji, closed) => {
+        console.info(emoji, closed);
+        output.value += emoji.emoji; // Sử dụng 'value' thay cho 'innerText'
+    };
+
+    emojiKeyboard.resizable = true;
+    emojiKeyboard.auto_reconstruction = true;
+    emojiKeyboard.default_placeholder = "Search Emoji...";
+
 
 })

@@ -18,7 +18,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('client/js/jquery.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 
     <link rel="stylesheet" href="{{ asset('client/css/chat.css') }}">
     <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
@@ -149,7 +151,14 @@
 
         .chat_icon span {
             font-size: 25px;
-            color: #FFFFFF;
+            /* color: #484807; */
+        }
+
+        #emojikb-maindiv {
+            position: fixed !important;
+            bottom: 230px !important;
+            right: 150px !important;
+            z-index: 1000 !important;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('client/css/toast-respon.css') }}">
@@ -506,6 +515,7 @@
                 </div>
             </div>
             <div class="row" id="bot-footer">
+
                 <div class="col-md-2 col-sm-4 col-4">
                     <ul>
                         <li><a href="{{ route('client.search_type', ['Điện thoại']) }}">Điện thoại</a></li>
@@ -611,8 +621,12 @@
         });
     </script>
 </body>
-<link rel="stylesheet" href="{{ asset('client/css/index-respon.css') }}">
 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
+<link rel="stylesheet" href="{{ asset('twemoji-emoji-keyboard/emoji_keyboard.css') }}">
+<script src="{{ asset('twemoji-emoji-keyboard/emoji_keyboard.js') }}"></script>
 <script>
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
@@ -622,8 +636,10 @@
         container: 'body'
     })
 </script>
-
 <script src="{{ asset('chat.js') }}"></script>
+
+
+
 <script>
     $("#search input").keyup(function() {
         var query = $(this).val();

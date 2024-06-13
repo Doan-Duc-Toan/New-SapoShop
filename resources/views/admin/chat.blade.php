@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Document</title>
 </head>
@@ -26,15 +26,18 @@
                     <div id="plist" class="people-list">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                {{-- <span class="input-group-text"><i class="fa fa-search"></i></span> --}}
+                                <span class="input-group-text">Danh sách khách hàng</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search...">
+                            {{-- <input type="text" class="form-control" placeholder="Search..."> --}}
                         </div>
-                        <ul id="list-conversation" class="list-unstyled chat-list mt-2 mb-0" data-conversation-ids="@json($conversationIds)">
+                        <ul id="list-conversation" class="list-unstyled chat-list mt-2 mb-0"
+                            data-conversation-ids="@json($conversationIds)">
                             @if ($conversations)
                                 @foreach ($conversations as $conversation)
-                                    <li class="clearfix conversation-item" data-conversation-id ="{{ $conversation->id }}">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                                    <li class="clearfix conversation-item"
+                                        data-conversation-id ="{{ $conversation->id }}">
+                                        <img src="{{ asset('img/user.png') }}" alt="avatar">
                                         <div class="about">
                                             <div class="name">{{ $conversation->customer->fullname }}</div>
                                             <div class="status"> <i class="fa fa-circle online"></i> online </div>
@@ -88,7 +91,7 @@
                         </ul>
                     </div>
                     <div class="chat" id="chatbox">
-                        <span>Hãy chọn 1 cuộc trò chuyện để bắt đầu</span>
+                        <span id="pick-conversation">Hãy chọn 1 cuộc trò chuyện để bắt đầu</span>
                         {{-- @include('admin.chat-box') --}}
                     </div>
                 </div>
@@ -97,15 +100,5 @@
     </div>
 </body>
 <script src="{{ asset('js/jquery.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-</script>
 <script src="{{ asset('chat-client.js') }}"></script>
-
 </html>

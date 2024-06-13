@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6">
             <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                <img src="{{asset('img/user.png')}}" alt="avatar">
             </a>
             <div class="chat-about">
                 <h6 class="m-b-0">{{ $conversation->customer->fullname }}</h6>
@@ -24,16 +24,17 @@
                 @if ($message->type == 'customer')
                     <li class="clearfix">
                         <div class="message-data">
-                            <span class="message-data-time">10:12 AM, Today</span>
+                            {{-- <span class="message-data-time">10:12 AM, Today</span> --}}
                         </div>
-                        <div class="message my-message">{{$message->content}}</div>
+                        <div class="message my-message">{{ $message->content }}</div>
                     </li>
                 @else
                     <li class="clearfix">
                         <div class="message-data text-right">
-                            <span class="message-data-time">10:10 AM, Today</span>
+                            {{-- <span class="message-data-time">10:10 AM, Today</span> --}}
+                            {{-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar"> --}}
                         </div>
-                        <div class="message other-message float-right">{{$message->content}}</div>
+                        <div class="message other-message float-right">{{ $message->content }}</div>
                     </li>
                 @endif
             @endforeach
