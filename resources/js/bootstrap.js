@@ -40,6 +40,6 @@ window.Echo = new Echo({
     key: "f02f767c4e4305be4576",
     cluster: "ap1",
     forceTLS: true,
-    authEndpoint: '/Sapo/broadcasting/auth'
+    authEndpoint: '/Toan/broadcasting/auth'
 });
 

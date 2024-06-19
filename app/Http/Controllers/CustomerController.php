@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 class CustomerController extends Controller
 {
     //
     function show(){
         $customers = Customer::get();
-
-        return view('admin.customer.show',compact('customers'));
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
+        return view('admin.customer.show',compact('customers', 'conversations', 'conversationIds', 'checkNew'));
     }
     function profile($id){
+        $customers = Customer::get();
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
         $customer = Customer::find($id);
-        return view('admin.customer.profile',compact('customer'));
+        return view('admin.customer.profile',compact('customer', 'conversations', 'conversationIds', 'checkNew'));
     }
      function search_ajax(Request $request)
     {

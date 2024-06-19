@@ -21,13 +21,15 @@ class MessageSend implements ShouldBroadcast
     public $conversationId;
     public $id;
     public $type;
-    public function __construct($message, $conversationId, $id, $type)
+    public $file;
+    public function __construct($message, $conversationId, $id, $type, $file)
     {
         //
         $this->message = $message;
         $this->conversationId = $conversationId;
         $this->id = $id;
         $this->type = $type;
+        $this->file = $file;
     }
 
     /**

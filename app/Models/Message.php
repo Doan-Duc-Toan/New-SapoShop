@@ -13,6 +13,7 @@ class Message extends Model
         'sender_id',
         'type',
         'content',
+        'file'
     ];
     public function conversation(){
         return $this->belongsTo(Conversation::class);

@@ -154,8 +154,8 @@
                 <h2 style="color: #FFFFFF;
                 margin: 0px;
                 font-weight: 500;">Thông báo
-                    SapoShop đã nhận được thông tin đơn đặt hàng của quý khách tại <a style="color: #FFFFFF;"
-                        href="https://ductoan.unitopcv.com/">Sapo.vn</a></h2>
+                    ToanShop đã nhận được thông tin đơn đặt hàng của quý khách tại <a style="color: #FFFFFF;"
+                        href="https://ductoan.unitopcv.com/">Toan.vn</a></h2>
             </div>
         </div>
         <div id="content" style="background-color: #F2F2F2;
@@ -172,11 +172,11 @@
                 <span style=" color: #363638;
                 font-weight: 500;
                 font-size: 17px;">Cửa
-                    hàng điện tử Sapo xin chân thành cảm ơn Quý khách đã tin tưởng, lựa chon sử dụng phần sản
+                    hàng điện tử ToanShop xin chân thành cảm ơn Quý khách đã tin tưởng, lựa chon sử dụng phần sản
                     phẩm của của hàng chúng tôi.</span><br>
                 <span style=" color: #363638;
                 font-weight: 500;
-                font-size: 17px;">Sapo
+                font-size: 17px;">Toan
                     đã nhận được thông tin đơn đặt hàng của Quý khách như sau: </span>
             </div>
             <div class="content-item" id="content-1" style="margin-bottom: 15px;">
@@ -371,7 +371,7 @@
                 <span style=" color: #363638;
                 font-weight: 500;
                 font-size: 17px;"><b>2.
-                        Thông tin Sapo xuất hóa đơn cho Quý khách</b></span>
+                        Thông tin Toan xuất hóa đơn cho Quý khách</b></span>
             </div>
             <div class="content-item" id="content-4"
                 style=" background-color: #FFFFFF; margin-bottom: 15px;
@@ -425,7 +425,7 @@
                     style=" color: #363638;
                 font-weight: 500;
                 font-size: 17px;"><b>Email:</b>
-                    support@sapo.vn</span><br><br>
+                    support@Toan.vn</span><br><br>
                 <span
                     style=" color: #363638;
                 font-weight: 500;
@@ -447,7 +447,7 @@
                     font-weight: 500;
                     font-size: 17px;"><b>Cửa
                         hàng điện
-                        tử Sapo.</b></span>
+                        tử Toan.</b></span>
             </div>
         </div>
         {{-- <div id="footer" style=" background-color: #F2F2F2;
@@ -459,7 +459,7 @@
             <span style=" color: #363638;
             font-weight: 500;
             font-size: 17px;"><b>Cửa hàng điện
-                    tử Sapo.</b></span>
+                    tử Toan.</b></span>
         </div> --}}
     </div>
 </body>

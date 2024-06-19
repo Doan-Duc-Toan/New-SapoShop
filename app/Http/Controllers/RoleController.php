@@ -5,22 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
     //
     function show()
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $roles = Role::all();
-        return view('admin.role.show', compact('roles'));
+        return view('admin.role.show', compact('roles', 'conversations', 'conversationIds', 'checkNew'));
     }
     function add()
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $permissions = Permission::all()->groupBy(function ($permission) {
             return explode('.', $permission->slug)[0];
         });
         // return $permissions;
-        return view('admin.role.add', compact('permissions'));
+        return view('admin.role.add', compact('permissions', 'conversations', 'conversationIds', 'checkNew'));
     }
     function store(Request $request)
     {
@@ -37,11 +44,14 @@ class RoleController extends Controller
     }
     function edit($id)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $permissions = Permission::all()->groupBy(function ($permission) {
             return explode('.', $permission->slug)[0];
         });
         $role = Role::find($id);   
-        return view('admin.role.edit', compact('role','permissions'));
+        return view('admin.role.edit', compact('role','permissions', 'conversations', 'conversationIds', 'checkNew'));
     }
     function update(Request $request, $id)
     {

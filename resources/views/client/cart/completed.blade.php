@@ -21,7 +21,7 @@
     <!-- <link rel="stylesheet" href="css/checkout.css"> -->
     <link rel="stylesheet" href="{{ asset('client/css/complete.css') }}">
     <script src="asset('client/js/jquery.js')"></script>
-    <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('client/img/toan.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('client/css/completed-respon.css')}}">
 </head>
 

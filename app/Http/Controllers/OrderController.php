@@ -14,6 +14,10 @@ class OrderController extends Controller
 
     public function show(Request $request)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
+
         $current_status = $request->input('status');
         if (!$current_status) $current_status = 'all';
         $orders = $request->session()->get('orders');
@@ -23,10 +27,13 @@ class OrderController extends Controller
             if ($current_status == 'all')
                 $orders = Order::orderBy('created_at','desc')->get();
             else $orders = Order::where('user_id', Auth::user()->id)->orderBy('created_at','desc')->get();
-        return view('admin.order.show', compact('orders', 'current_status','revenue'));
+        return view('admin.order.show', compact('orders', 'current_status','revenue', 'conversations', 'conversationIds', 'checkNew'));
     }
     function detail($id)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $order = Order::find($id);
         if (!$order->user_id) {
             $order->user_id = Auth::user()->id;
@@ -47,7 +54,7 @@ class OrderController extends Controller
                 }
             }
         }
-        return view('admin.order.detail', compact('order', 'order_details', 'check'));
+        return view('admin.order.detail', compact('order', 'order_details', 'check', 'conversations', 'conversationIds', 'checkNew'));
     }
     function ship($id)
     {

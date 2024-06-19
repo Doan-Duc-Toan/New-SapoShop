@@ -10,11 +10,13 @@ use App\Mail\SapoMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Role;
+
 class AdminUserController extends Controller
 {
     //
     function login()
     {
+
         return view('admin.login');
     }
     function login_handle(Request $request)
@@ -31,7 +33,7 @@ class AdminUserController extends Controller
             return redirect()->route('dashboard');
         else return redirect()->route('admin.login')->with('error', 'Thông tin đăng nhập không chính xác');
     }
-    function logout(Request $request) 
+    function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
@@ -40,8 +42,12 @@ class AdminUserController extends Controller
     }
     function show(Request $request)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
+
         $status = $request->input('status');
-        if(empty($status))$status = 'active';
+        if (empty($status)) $status = 'active';
         if ($status == 'trash') {
             $users = User::onlyTrashed()->paginate(5);
             $acts = ['restore' => 'Khôi phục', 'force_delete' => 'Xóa vĩnh viễn'];
@@ -49,12 +55,15 @@ class AdminUserController extends Controller
             $acts = ['soft_delete' => 'Xóa tạm thời'];
             $users = User::paginate(5);
         }
-        return view('admin.user.show', compact('users', 'status', 'acts'));
+        return view('admin.user.show', compact('users', 'status', 'acts', 'conversations', 'conversationIds', 'checkNew'));
     }
     function add()
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $roles = Role::all();
-        return view('admin.user.add',compact('roles'));
+        return view('admin.user.add', compact('roles', 'conversations', 'conversationIds', 'checkNew'));
     }
     function store(Request $request)
     {
@@ -92,6 +101,9 @@ class AdminUserController extends Controller
     }
     function profile_show(Request $request, $id)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         if ($request->input('status') == 'trash') {
             $status = 'trash';
             $user = User::onlyTrashed()->find($id);
@@ -99,14 +111,17 @@ class AdminUserController extends Controller
             $status = 'active';
             $user = User::find($id);
         }
-        return view('admin.user.profile', compact('user', 'status'));
+        return view('admin.user.profile', compact('user', 'status', 'conversations', 'conversationIds', 'checkNew'));
     }
 
     function edit($id)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $roles = Role::all();
         $user = User::find($id);
-        return view('admin.user.edit', compact('user','roles'));
+        return view('admin.user.edit', compact('user', 'roles', 'conversations', 'conversationIds', 'checkNew'));
     }
     function update(Request $request, $id)
     {
@@ -125,7 +140,7 @@ class AdminUserController extends Controller
                 'note' => $request->input('note'),
             ]
         );
-        $user->roles()->sync($request->input('roles',[]));
+        $user->roles()->sync($request->input('roles', []));
         return redirect()->route('admin_user.show')->with('status', 'Đã cập nhật thông tin người dùng thành công');
     }
     function softdelete($id)
@@ -193,11 +208,13 @@ class AdminUserController extends Controller
             return redirect()->route('admin_user.show')->with('status', 'Đã xóa vĩnh viễn danh sách người dùng thành công');
         }
     }
-    function current_user(){
+    function current_user()
+    {
         $user = Auth::user();
-        return view('admin.user.current',compact('user'));
+        return view('admin.user.current', compact('user'));
     }
-    function reset_password(Request $request){
+    function reset_password(Request $request)
+    {
         $user = Auth::user();
         $old_pass = $request->input('old_password');
         if (Hash::check($old_pass, Auth::user()->password)) {

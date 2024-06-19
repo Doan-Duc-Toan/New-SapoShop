@@ -75,8 +75,33 @@ body {
 .people-list .chat-list li {
     padding: 10px 15px;
     list-style: none;
-    border-radius: 3px
+    border-radius: 3px;
+    position: relative;
 }
+
+#emojikb-maindiv {
+    right: 100px !important;
+    top: 200px !important;
+    z-index: 200 !important;
+}
+
+.people-list .chat-list li::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 6px;
+    width: 6px;
+    background-color: red;
+    border-radius: 50%;
+    display: none;
+}
+
+.not-seen::before {
+    display: block !important;
+    ;
+}
+
 
 .people-list .chat-list li:hover {
     background: #efefef;
@@ -247,6 +272,73 @@ body {
     clear: both;
     height: 0
 }
+
+
+
+
+
+
+
+#img-file {
+    position: fixed;
+    top: -1000px;
+}
+#form-send-message{
+    position: relative;
+}
+#preview {
+    position: absolute;
+    height: 120px;
+    top: -120px;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0px 15px;
+    background-color: #303031;
+    display: none;
+}
+.d-flex-img{
+    display: flex !important;
+}
+.img-preview {
+    height: 100px;
+    position: relative;
+}
+
+.img-preview img {
+    height: 100px;
+    width: auto;
+}
+.delete-img {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+    height: 17px;
+    background-color: red;
+    top: -9px;
+    right: -9px;
+    font-size: 10px !important;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.message-img img{
+    width: auto;
+    height: 200px;
+}
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 767px) {
     .chat-app .people-list {

@@ -189,7 +189,7 @@ if($count == 1 ) echo 'checked'; $count = 0; @endphp
             </form>
             <div id="offers">
                 <span>1. Miễn phí vận chuyển toàn quốc đối với sản phẩm đặt hàng Online</span><br>
-                <span>2. Tặng kèm phiếu bảo hành 2 năm đối với tất cả sản phẩm trên SapoShop</span><br>
+                <span>2. Tặng kèm phiếu bảo hành 2 năm đối với tất cả sản phẩm trên ToanShop</span><br>
                 <span>3. Tặng phiếu mua hàng trị giá 200,000VNĐ (Áp dụng khi mua hàng trực tiếp tại Shop)</span>
             </div>
         </div>

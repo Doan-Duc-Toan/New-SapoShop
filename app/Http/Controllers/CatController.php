@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cat;
-
+use Illuminate\Support\Facades\Auth;
 class CatController extends Controller
 {
     //
     function add()
     {
-        return view('admin.cat.add');
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
+        return view('admin.cat.add',compact(['conversations', 'conversationIds', 'checkNew']));
     }
     function store(Request $request)
     {
@@ -26,13 +29,19 @@ class CatController extends Controller
     }
     function show()
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $cats = Cat::all();
-        return view('admin.cat.show', compact('cats'));
+        return view('admin.cat.show', compact('cats', 'conversations', 'conversationIds', 'checkNew'));
     }
     function detail($id)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $cat = Cat::find($id);
-        return view('admin.cat.detail', compact('cat'));
+        return view('admin.cat.detail', compact('cat', 'conversations', 'conversationIds', 'checkNew'));
     }
     function action($id, Request $request)
     {

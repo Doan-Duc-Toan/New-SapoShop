@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
     //
     function show()
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $permissions = Permission::all()->groupBy(function ($permission) {
             return explode('.', $permission->slug)[0];
         });
-        return view('admin.permission.show', compact('permissions'));
+        return view('admin.permission.show', compact('permissions', 'conversations', 'conversationIds', 'checkNew'));
     }
     function store(Request $request)
     {
@@ -31,8 +35,11 @@ class PermissionController extends Controller
     }
     function edit($id)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $permission = Permission::find($id);
-        return view('admin.permission.edit', compact('permission'));
+        return view('admin.permission.edit', compact('permission', 'conversations', 'conversationIds', 'checkNew'));
     }
     function update(Request $request, $id)
     {

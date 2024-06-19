@@ -110,7 +110,7 @@ class EmojiKeyboard {
     }
 
     click_on_emoji(kb, event) {
-        if (!event.shiftKey) kb.toggle_window();
+        // if (!event.shiftKey) kb.toggle_window();
         const data = Object.assign({}, event.target.dataset)
         kb.callback(data, !event.shiftKey);
     }
@@ -251,6 +251,7 @@ class EmojiKeyboard {
         main_div.style.width = '500px';
         if (this.resizable) {
             main_div.classList.add('resizable');
+            main_div.classList.add('emojikb-hidden');
             main_div.dataset.m_pos = 0;
             const f = (e) => { this.resize(e, main_div) };
             main_div.addEventListener("mousedown", (e) => {

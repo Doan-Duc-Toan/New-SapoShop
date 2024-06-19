@@ -23,11 +23,11 @@
 
 
     <link rel="stylesheet" href="{{ asset('client/css/chat.css') }}">
-    <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('client/img/toan.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('client/css/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/layout-respon.css') }}">
-    <title>SapoShop</title>
+    <title>ToanShop</title>
 </head>
 
 <body>
@@ -166,7 +166,7 @@
         <div id="header">
             <div id="top-header" class="">
                 <div class="" id="logo">
-                    <a href="{{ route('client.index') }}"><img src="{{ asset('client/img/logo-sapo-02.png') }}"
+                    <a href="{{ route('client.index') }}"><img src="{{ asset('client/img/toan.png') }}"
                             alt=""></a>
                 </div>
                 <div class="" id="respon-logo">
@@ -458,7 +458,8 @@
             @if (Auth::guard('customers')->check())
                 <div class="chat_icon">
                     @include('client.chat')
-                    <span class="chat-click"><i class="fa-solid fa-headset"></i></span>
+                    <span class="chat-click {{ $conversation->customer_seen ? '' : 'new-message' }}"><i
+                            class="fa-solid fa-headset"></i></span>
                 </div>
             @endif
             @yield('content')
@@ -467,12 +468,12 @@
             <div class="row" id="top-footer">
                 <div class="col-md-9 col-lg-6 col-sm-12 col-12 row" id="shop-contact">
                     <div class="col-md-12 shop-logo">
-                        <a href="#"><img src="{{ asset('client/img/logo-sapo-02.png') }}" alt=""></a>
+                        <a href="#"><img src="{{ asset('client/img/toan.png') }}" alt=""></a>
                     </div>
                     <div class="col-md-12 contact-detail">
                         <b>Trụ sở chính:</b> <span class="text-secondary"> Ladeco Building, 266 Doi Can Street, Ba Dinh
                             District, Hanoi </span><br>
-                        <b>Email:</b> <a class="text-secondary" href="">support@sapo.vn</a><br>
+                        <b>Email:</b> <a class="text-secondary" href="">support@toan.vn</a><br>
                         <b>Hotline:</b> <a class="text-secondary" href="">1900 6750</a> <br>
                         <span class="text-secondary">Giấy chứng nhận Đăng ký Kinh doanh số 0309532xxx do Sở Kế hoạch và
                             Đầu tư Thành phố Hà Nội cấp ngày
@@ -502,7 +503,7 @@
                         <div class="icon-item center"><a href=""><img
                                     src="{{ asset('client/img/cricle-twitter-emblem-png-clipart-8.png') }}"
                                     alt=""></a></div>
-                        <div class="icon-item center"><a href="https://www.youtube.com/@Sapo-VietNam"><img
+                        <div class="icon-item center"><a href=""><img
                                     src="{{ asset('client/img/official-youtube-icon-28.png') }}" alt=""></a>
                         </div>
                         <div class="icon-item center"><a href=""><img

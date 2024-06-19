@@ -16,10 +16,12 @@ class ProductController extends Controller
     //
     function add()
     {
-
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $colors = Color::all();
         $cats = Cat::all();
-        return view('admin.product.add', compact('colors', 'cats'));
+        return view('admin.product.add', compact('colors', 'cats', 'conversations', 'conversationIds', 'checkNew'));
     }
 
     function store(Request $request)
@@ -208,11 +210,14 @@ class ProductController extends Controller
     }
     public function show($products =  null)
     {
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         if (!$products) $products = Product::get();
         $cats = Cat::all();
         $types = Product::distinct()->pluck('type');
         $suppliers = Product::distinct()->pluck('supplier');
-        return view('admin.product.show', compact('products', 'cats', 'types', 'suppliers'));
+        return view('admin.product.show', compact('products', 'cats', 'types', 'suppliers', 'conversations', 'conversationIds', 'checkNew'));
     }
     function search_ajax(Request $request)
     {
@@ -231,10 +236,13 @@ class ProductController extends Controller
     }
 
     function your_products(){
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
         $products = Product::where('user_id',Auth::user()->id)->get();
         $cats = Cat::all();
         $types = Product::distinct()->pluck('type');
         $suppliers = Product::distinct()->pluck('supplier');
-        return view('admin.product.your_product', compact('products', 'cats', 'types', 'suppliers'));
+        return view('admin.product.your_product', compact('products', 'cats', 'types', 'suppliers', 'conversations', 'conversationIds', 'checkNew'));
     }
 }

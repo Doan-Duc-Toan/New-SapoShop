@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/list.css') }}">
     <link rel="stylesheet" href="{{ asset('css/customer-detail.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product_detail.css') }}">
-    <link rel="icon" href="{{ asset('client/img/Icon-Sapo.webp') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('client/img/toan.png') }}" type="image/x-icon">
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <title>SapoShop</title>
+    <title>ToanShop</title>
 </head>
 
 <body>
@@ -51,8 +51,9 @@
             <div class="col-md-2" id="sidebar">
                 <div class="">
                     <ul class="row" id="navbar">
-                        <li class="col-md-12 nav-item" id="logo"><a href=""><img
-                                    src="{{ asset('img/Sapo-logo (1).svg') }}" alt=""></a>
+                        <li class="col-md-12 nav-item" id="logo">
+                            {{-- <a href=""><img
+                                    src="{{ asset('client/img/toan.png') }}" alt=""></a> --}}
                         </li>
                         <li class="col-md-12 nav-item">
                             <a class="item-link" href="{{ route('dashboard') }}"><i
@@ -147,7 +148,7 @@
                                 </div>
                             </ul>
                         </li>
-                        <li class="col-md-12 nav-item" id="chat-online">
+                        <li class="col-md-12 nav-item {{ $checkNew ? 'chat-new-message' : '' }}" id="chat-online">
                             <a href="{{ route('advise') }}" class="item-link"><i
                                     class="fa-solid fa-comments"></i><span>Tư vấn</span></a>
                         </li>
@@ -172,9 +173,9 @@
                                 data-bs-content="<div class='popover-help'>
                                     <div class='row' id='popover-menu'>                                                                   
                                         <ul class='col-md-12' id='list-suggest'>
-                                            <li><a href='#'>Tổng quan về SapoShop</a></li>                                           
-                                            <li><a href='#'>Giới thiệu giao diện chung SapoShop</a></li>
-                                            <li><a href='#'>Hướng dẫn trải nghiệm SapoShop</a></li>                                           
+                                            <li><a href='#'>Tổng quan về ToanShop</a></li>                                           
+                                            <li><a href='#'>Giới thiệu giao diện chung ToanShop</a></li>
+                                            <li><a href='#'>Hướng dẫn trải nghiệm ToanShop</a></li>                                           
                                         </ul>
                                         <div class='col-md-12 row' id='menu-suggest'>
                                             <a href='#' class='col-md-4'>
@@ -275,8 +276,9 @@
                 </div>
             </div>
         </div>
-
+        <div id="list-conversation" data-conversation-ids="@json($conversationIds)"></div>
         <script src="{{ asset('js/index.js') }}"></script>
+        <script src="{{ asset('chat-client.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
         </script>

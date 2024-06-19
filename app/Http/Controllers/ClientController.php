@@ -25,8 +25,7 @@ use App\Models\User;
 class ClientController extends Controller
 {
     //
-
-    function index()
+        function index()
     {
         // event(new MessageSend('Tạm biệt'));
         $products = Product::all();
@@ -47,6 +46,14 @@ class ClientController extends Controller
     }
     function detail($name, $id)
     {
+        if (Auth::guard('customers')->check()) {
+            $customer = Auth::guard('customers')->user();
+            $conversation = $customer->conversations->first();
+            $messages = $conversation->messages;
+        } else {
+            $messages = [];
+            $conversation = [];
+        }
         $product = Product::find($id);
         $product_review_count = $product->reviews->count();
         if ($product_review_count == 0) $product_review = 0;
@@ -59,9 +66,9 @@ class ClientController extends Controller
             if ($review)
                 $star = $review->star;
             else $star = 0;
-            return view('client.product.detail', compact('product', 'star', 'product_review'));
+            return view('client.product.detail', compact('product', 'star', 'product_review','conversation','messages'));
         };
-        return view('client.product.detail', compact('product', 'product_review'));
+        return view('client.product.detail', compact('product', 'product_review','conversation','messages'));
     }
     function cart_act($id, Request $request)
     {
@@ -166,11 +173,19 @@ class ClientController extends Controller
     }
     function cart_show()
     {
+        if (Auth::guard('customers')->check()) {
+            $customer = Auth::guard('customers')->user();
+            $conversation = $customer->conversations->first();
+            $messages = $conversation->messages;
+        } else {
+            $messages = [];
+            $conversation = [];
+        }
         if (Auth::guard('customers')->user()->draft_order) {
             $draft_order = Order::find(Auth::guard('customers')->user()->draft_order);
             $order_details = $draft_order->orderDetails;
-            return view('client.cart.show', compact('order_details', 'draft_order'));
-        } else return view('client.cart.show');
+            return view('client.cart.show', compact('order_details', 'draft_order','conversation','messages'));
+        } else return view('client.cart.show', compact('conversation','messages'));
     }
     function cart_cal(Request $request)
     {

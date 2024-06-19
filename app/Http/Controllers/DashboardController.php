@@ -11,6 +11,8 @@ use App\Models\Product_Color;
 use App\Models\NotifiCation;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 class DashboardController extends Controller
 {
     //
@@ -18,6 +20,9 @@ class DashboardController extends Controller
     {
         // $order_completed= Order::where('delivery_status','Hoàn thành')->get();
         // $order_in_day = $order_completed->whereDate('created_at', '2023-07-03');
+        $conversations = Auth::user()->conversations->sortByDesc('updated_at');
+        $conversationIds = $conversations->pluck('id');
+        $checkNew = $conversations->where('user_seen', 0)->count();
 
         $orders_of_day = Order::where('delivery_status', 'Hoàn thành')
             ->whereDate('updated_at', Carbon::today())
@@ -61,7 +66,7 @@ class DashboardController extends Controller
         }
         $trending_product = Product_Color::orderBy('sold', 'desc')->take(5)->get();
         $messages = Notification::orderBy('created_at', 'desc')->get();
-        return view('admin.dashboard.index', compact('amounts', 'total', 'customer', 'orders_of_day', 'trending_product', 'messages'));
+        return view('admin.dashboard.index', compact('amounts', 'total', 'customer', 'orders_of_day', 'trending_product', 'messages', 'conversations', 'conversationIds', 'checkNew'));
     }
     function search_admin_ajax(Request $request)
     {
@@ -93,7 +98,7 @@ class DashboardController extends Controller
             $data4 = User::where('fullname', 'LIKE', "%{$query}%")->get();
             $output .= '<li class ="px-3">' . "Người dùng"  . '</li>';
             foreach ($data4 as $row) {
-                    $output .= '
+                $output .= '
                <li><a href="' . route('admin_user.profile', $row->id) . '">' . "  " . $row->id . "---" . $row->fullname . '</a></li>
                ';
             }

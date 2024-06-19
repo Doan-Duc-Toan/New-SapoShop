@@ -77,7 +77,7 @@
             </form>
         @else
             <span class="no_product">Không có sản phẩm nào trong giỏ hàng (<a href="{{ route('client.index') }}"
-                    style="">Quay lại Sapo để mua sắm</a> )</span>
+                    style="">Quay lại ToanShop để mua sắm</a> )</span>
         @endif
 
 

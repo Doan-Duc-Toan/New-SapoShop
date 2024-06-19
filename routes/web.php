@@ -89,16 +89,13 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/current_user', [AdminUserController::class, 'current_user'])->name('current_user');
     Route::post('reset_password', [AdminUserController::class, 'reset_password'])->name('reset_password');
     Route::get('chat/getConversation', [ChatController::class, 'getConversation'])->name('chat.getConversation');
-
-
-
-
     Route::get('admin/advise', [ChatController::class, 'advise'])->name('advise');
-    Route::get("chat/sendToCustomer", [ChatController::class, 'sendToCustomer'])->name('chat.sendToCustomer');
+    Route::post("chat/sendToCustomer", [ChatController::class, 'sendToCustomer'])->name('chat.sendToCustomer');
+    Route::get("chat/updateConversation", [ChatController::class, 'updateConversation'])->name('chat.updateConversation');
 });
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
 Route::get("/chat/handle",[ChatController::class, 'handle'])->name('chat.handle');
-Route::group(['prefix' => 'sapo'], function () {
+Route::group(['prefix' => 'toan'], function () {
     Route::get('login', [ClientCustomerController::class, 'login'])->name('client.login');
     Route::get('register', [ClientCustomerController::class, 'register'])->name('client.register');
     Route::get('/', [ClientController::class, 'index'])->name('client.index');
@@ -133,6 +130,6 @@ Route::group(['prefix' => 'sapo'], function () {
         Route::post('profile/edit_password', [ClientCustomerController::class, 'edit_password'])->name('client.profile_editpass');
         Route::post('feedback', [ClientCustomerController::class, 'feedback'])->name('client.feedback');
         Route::get('review', [ClientController::class, 'review'])->name('review');
-        Route::get("chat/send", [ChatController::class, 'send'])->name('chat.send');
+        Route::post("chat/send", [ChatController::class, 'send'])->name('chat.send');
     });
 });

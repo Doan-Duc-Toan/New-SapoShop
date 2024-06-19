@@ -92,6 +92,26 @@ a:hover{
     position: relative;
     padding: 0px;
 }
+
+
+#chat-online::before{
+    display: none;
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 10px;
+    width: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
+.chat-new-message::before{
+    display: block !important;
+}
+
+
+
+
 #sidebar ul#navbar li.nav-item ul.sub-menu{
     display: none;
     width: 100%;

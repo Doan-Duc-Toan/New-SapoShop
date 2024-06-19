@@ -1,13 +1,16 @@
-#page-content{
+#page-content {
     position: fixed;
     bottom: 170px;
     right: 100px;
     display: none;
+    width: 500px;
 }
-#box-form{
+
+#box-form {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-#form-send-message{
+
+#form-send-message {
     padding: 0;
 }
 
@@ -19,8 +22,8 @@
     border: 0;
     border-radius: 0px;
     /* margin-bottom: 30px; */
-    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.03);
-    box-shadow: 0 2px 3px rgba(0,0,0,0.03);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
     -webkit-transition: .5s;
     transition: .5s;
 }
@@ -28,9 +31,11 @@
 .padding {
     /* padding: 3rem !important */
 }
-.padding  .row{
+
+.padding .row {
     padding: 0;
 }
+
 body {
     background-color: #f9f9fa
 }
@@ -49,7 +54,7 @@ body {
     align-items: center;
     padding: 15px 20px;
     background-color: transparent;
-    border-bottom: 1px solid rgba(77,82,89,0.07);
+    border-bottom: 1px solid rgba(77, 82, 89, 0.07);
 }
 
 .card-header .card-title {
@@ -82,20 +87,21 @@ h4.card-title {
     padding: 2px 8px;
     line-height: 18px;
 }
-.btn-xs:hover{
-    color:#fff !important;
+
+.btn-xs:hover {
+    color: #fff !important;
 }
 
 
 
 
 .card-title {
-    font-family: Roboto,sans-serif;
+    font-family: Roboto, sans-serif;
     font-weight: 300;
     line-height: 1.5;
     margin-bottom: 0;
     padding: 15px 20px;
-    border-bottom: 1px solid rgba(77,82,89,0.07);
+    border-bottom: 1px solid rgba(77, 82, 89, 0.07);
 }
 
 
@@ -106,7 +112,7 @@ h4.card-title {
 .ps-container {
     -ms-touch-action: auto;
     touch-action: auto;
-    overflow: hidden!important;
+    overflow: hidden !important;
     -ms-overflow-style: none;
 }
 
@@ -155,7 +161,7 @@ h4.card-title {
     background-color: #f5f6f7;
     border-radius: 3px;
     font-weight: 100;
-    color:#9b9b9b;
+    color: #9b9b9b;
 }
 
 .media>* {
@@ -189,7 +195,8 @@ h4.card-title {
     margin-right: 16px;
 }
 
-.media-meta-day::before, .media-meta-day::after {
+.media-meta-day::before,
+.media-meta-day::after {
     content: '';
     -webkit-box-flex: 1;
     flex: 1 1;
@@ -257,10 +264,12 @@ h4.card-title {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    padding: 12px 20px;
+    padding: 12px 0px;
     background-color: #f9fafb;
 }
-
+.d-flex-img{
+    display: flex !important;
+}
 .publisher>*:first-child {
     margin-left: 0;
 }
@@ -277,8 +286,12 @@ h4.card-title {
     background-color: transparent;
 }
 
-button, input, optgroup, select, textarea {
-    font-family: Roboto,sans-serif;
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: Roboto, sans-serif;
     font-weight: 300;
 }
 
@@ -294,9 +307,9 @@ button, input, optgroup, select, textarea {
 }
 
 .file-group {
-    position: relative;
-    overflow: hidden;
-} 
+    /* position: relative;
+    overflow: hidden; */
+}
 
 .publisher-btn {
     background-color: transparent;
@@ -307,15 +320,81 @@ button, input, optgroup, select, textarea {
     overflow: -moz-hidden-unscrollable;
     -webkit-transition: .2s linear;
     transition: .2s linear;
-} 
+}
 
 .file-group input[type="file"] {
     position: absolute;
     opacity: 0;
-    z-index: -1; 
+    z-index: -1;
     width: 20px;
 }
 
 .text-info {
     color: #48b0f7 !important;
+}
+
+.chat-click {
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+}
+
+.new-message::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+
+.message-img img {
+    height: 200px;
+    width: auto;
+}
+
+#form-input-message {
+    position: relative;
+}
+
+#preview {
+    position: absolute;
+    height: 120px;
+    top: -120px;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0px 15px;
+    background-color: #303031;
+    display: none;
+}
+
+.img-preview {
+    height: 100px;
+    position: relative;
+}
+
+.img-preview img {
+    height: 100px;
+    width: auto;
+}
+.delete-img {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+    height: 17px;
+    background-color: red;
+    top: -9px;
+    right: -9px;
+    font-size: 10px !important;
+    color: #fff;
+    border-radius: 50%;
 }

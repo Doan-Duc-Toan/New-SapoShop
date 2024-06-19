@@ -74,6 +74,14 @@ class ClientCustomerController extends Controller
     }
     function profile(Request $request)
     {
+        if (Auth::guard('customers')->check()) {
+            $customer = Auth::guard('customers')->user();
+            $conversation = $customer->conversations->first();
+            $messages = $conversation->messages;
+        } else {
+            $messages = [];
+            $conversation = [];
+        }
         if (!empty($request->input('status')))
             $status = $request->input('status');
         else $status = 'show';
@@ -81,19 +89,27 @@ class ClientCustomerController extends Controller
         $order_count = $customer->orders->whereNotIn('delivery_status', 'Đơn hàng nháp')->count();
         if ($status == 'order_history') {
             $orders = $customer->orders->whereNotIn('delivery_status', 'Đơn hàng nháp');
-            return view('client.profile.show', compact('customer', 'status', 'orders', 'order_count'));
+            return view('client.profile.show', compact('customer', 'status', 'orders', 'order_count','messages','conversation'));
         }
         if ($status == 'order_detail') {
             $id = $request->input('id');
             $order = Order::find($id);
-            return view('client.profile.show', compact('customer', 'status', 'order', 'order_count'));
+            return view('client.profile.show', compact('customer', 'status', 'order', 'order_count','messages','conversation'));
         }
-        return view('client.profile.show', compact('customer', 'status', 'order_count'));
+        return view('client.profile.show', compact('customer', 'status', 'order_count','messages','conversation'));
     }
     function edit()
     {
+        if (Auth::guard('customers')->check()) {
+            $customer = Auth::guard('customers')->user();
+            $conversation = $customer->conversations->first();
+            $messages = $conversation->messages;
+        } else {
+            $messages = [];
+            $conversation = [];
+        }
         $customer = Auth::guard('customers')->user();
-        return view('client.profile.edit', compact('customer'));
+        return view('client.profile.edit', compact('customer','messages','conversation'));
     }
     function update(Request $request)
     {
